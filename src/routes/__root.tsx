@@ -113,12 +113,25 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function AppShell() {
+  useCartSync();
+  return (
+    <>
+      <Outlet />
+      <CartDrawer />
+      <Sonner />
+    </>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <TooltipProvider>
+        <AppShell />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
