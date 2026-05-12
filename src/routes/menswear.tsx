@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ProductGrid";
+import MensCategoryNav, { MENS_CATEGORIES, type MensCategoryKey } from "@/components/MensCategoryNav";
 import heroMen from "@/assets/hero-men.jpg";
 
 export const Route = createFileRoute("/menswear")({
@@ -11,6 +13,10 @@ export const Route = createFileRoute("/menswear")({
 
 function Menswear() {
   const { t } = useTranslation();
+  const [active, setActive] = useState<MensCategoryKey>("all");
+  const handles = MENS_CATEGORIES.find((c) => c.key === active)?.handles ?? [];
+  const title = t(`mens.categories.${active}`, { defaultValue: t("hero.men") });
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -33,7 +39,10 @@ function Menswear() {
             </Link>
           </div>
         </section>
-        <ProductGrid collectionHandles={["erkek", "erkek-giyim", "men", "menswear", "mens"]} title={t("hero.men")} />
+
+        <MensCategoryNav active={active} onChange={setActive} />
+
+        <ProductGrid key={active} collectionHandles={handles} title={String(title)} />
       </main>
       <Footer />
     </div>

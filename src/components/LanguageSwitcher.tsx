@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
 import {
@@ -16,12 +17,15 @@ const LANGS = [
 
 const LanguageSwitcher = ({ variant = "nav" }: { variant?: "nav" | "footer" }) => {
   const { i18n, t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const current = LANGS.find((l) => l.code === i18n.language.split("-")[0]) ?? LANGS[0];
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        aria-label={t("lang.label")}
+        aria-label={mounted ? t("lang.label") : "Language"}
+        suppressHydrationWarning
         className={
           variant === "nav"
             ? "flex items-center gap-1 text-nav-foreground hover:opacity-60 transition-opacity text-xs uppercase tracking-wider"
@@ -29,7 +33,9 @@ const LanguageSwitcher = ({ variant = "nav" }: { variant?: "nav" | "footer" }) =
         }
       >
         <Globe size={16} strokeWidth={1.5} />
-        <span className="hidden sm:inline">{current.code.toUpperCase()}</span>
+        <span className="hidden sm:inline" suppressHydrationWarning>
+          {mounted ? current.code.toUpperCase() : "EN"}
+        </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[140px]">
         {LANGS.map((l) => (
