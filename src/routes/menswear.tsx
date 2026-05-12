@@ -13,7 +13,7 @@ export const Route = createFileRoute("/menswear")({
 
 function Menswear() {
   const { t } = useTranslation();
-  const [active, setActive] = useState<MensCategoryKey>("all");
+  const [active, setActive] = useState<MensCategoryKey>("tops");
   const handles = MENS_CATEGORIES.find((c) => c.key === active)?.handles ?? [];
   const title = t(`mens.categories.${active}`, { defaultValue: t("hero.men") });
 
