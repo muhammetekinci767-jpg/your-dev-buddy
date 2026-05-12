@@ -24,7 +24,8 @@ const LanguageSwitcher = ({ variant = "nav" }: { variant?: "nav" | "footer" }) =
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        aria-label={t("lang.label")}
+        aria-label={mounted ? t("lang.label") : "Language"}
+        suppressHydrationWarning
         className={
           variant === "nav"
             ? "flex items-center gap-1 text-nav-foreground hover:opacity-60 transition-opacity text-xs uppercase tracking-wider"
