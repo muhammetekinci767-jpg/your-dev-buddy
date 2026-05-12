@@ -42,7 +42,9 @@ function Menswear() {
 
         <MensCategoryNav active={active} onChange={setActive} />
 
-        <ProductGrid key={active} collectionHandles={handles} title={String(title)} />
+        <div id="mens-grid">
+          <ProductGrid key={active} collectionHandles={handles} title={String(title)} />
+        </div>
       </main>
       <Footer />
     </div>
