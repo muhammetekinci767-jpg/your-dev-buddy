@@ -32,7 +32,7 @@ const SearchOverlay = ({ open, onClose }: Props) => {
   const go = (path: string) => {
     onClose();
     setQuery("");
-    navigate(path);
+    navigate({ to: path });
   };
 
   return (
