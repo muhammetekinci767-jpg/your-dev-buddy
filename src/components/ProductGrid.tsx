@@ -38,7 +38,7 @@ const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: Produ
             return (
               <div key={p.node.id} className="group">
                 <Link
-                  to={`/product/${p.node.handle}`}
+                  to="/product/$handle" params={{ handle: p.node.handle }}
                   className="relative overflow-hidden mb-3 aspect-[3/4] bg-secondary block"
                 >
                   {image && (
@@ -68,7 +68,7 @@ const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: Produ
                     Sepete Ekle
                   </button>
                 </Link>
-                <Link to={`/product/${p.node.handle}`}>
+                <Link to="/product/$handle" params={{ handle: p.node.handle }}>
                   <p className="text-foreground text-xs font-medium tracking-wide leading-tight">
                     {p.node.title}
                   </p>
