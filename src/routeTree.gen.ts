@@ -10,7 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WomenswearRouteImport } from './routes/womenswear'
+import { Route as SizeGuideRouteImport } from './routes/size-guide'
+import { Route as ReturnsRouteImport } from './routes/returns'
 import { Route as MenswearRouteImport } from './routes/menswear'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WomenswearRoute = WomenswearRouteImport.update({
@@ -18,9 +23,34 @@ const WomenswearRoute = WomenswearRouteImport.update({
   path: '/womenswear',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SizeGuideRoute = SizeGuideRouteImport.update({
+  id: '/size-guide',
+  path: '/size-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReturnsRoute = ReturnsRouteImport.update({
+  id: '/returns',
+  path: '/returns',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MenswearRoute = MenswearRouteImport.update({
   id: '/menswear',
   path: '/menswear',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryRoute = DeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,31 +61,76 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/delivery': typeof DeliveryRoute
+  '/faq': typeof FaqRoute
   '/menswear': typeof MenswearRoute
+  '/returns': typeof ReturnsRoute
+  '/size-guide': typeof SizeGuideRoute
   '/womenswear': typeof WomenswearRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/delivery': typeof DeliveryRoute
+  '/faq': typeof FaqRoute
   '/menswear': typeof MenswearRoute
+  '/returns': typeof ReturnsRoute
+  '/size-guide': typeof SizeGuideRoute
   '/womenswear': typeof WomenswearRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/delivery': typeof DeliveryRoute
+  '/faq': typeof FaqRoute
   '/menswear': typeof MenswearRoute
+  '/returns': typeof ReturnsRoute
+  '/size-guide': typeof SizeGuideRoute
   '/womenswear': typeof WomenswearRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/menswear' | '/womenswear'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/delivery'
+    | '/faq'
+    | '/menswear'
+    | '/returns'
+    | '/size-guide'
+    | '/womenswear'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/menswear' | '/womenswear'
-  id: '__root__' | '/' | '/menswear' | '/womenswear'
+  to:
+    | '/'
+    | '/contact'
+    | '/delivery'
+    | '/faq'
+    | '/menswear'
+    | '/returns'
+    | '/size-guide'
+    | '/womenswear'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/delivery'
+    | '/faq'
+    | '/menswear'
+    | '/returns'
+    | '/size-guide'
+    | '/womenswear'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  DeliveryRoute: typeof DeliveryRoute
+  FaqRoute: typeof FaqRoute
   MenswearRoute: typeof MenswearRoute
+  ReturnsRoute: typeof ReturnsRoute
+  SizeGuideRoute: typeof SizeGuideRoute
   WomenswearRoute: typeof WomenswearRoute
 }
 
@@ -68,11 +143,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WomenswearRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/size-guide': {
+      id: '/size-guide'
+      path: '/size-guide'
+      fullPath: '/size-guide'
+      preLoaderRoute: typeof SizeGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/returns': {
+      id: '/returns'
+      path: '/returns'
+      fullPath: '/returns'
+      preLoaderRoute: typeof ReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/menswear': {
       id: '/menswear'
       path: '/menswear'
       fullPath: '/menswear'
       preLoaderRoute: typeof MenswearRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery': {
+      id: '/delivery'
+      path: '/delivery'
+      fullPath: '/delivery'
+      preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,9 +197,24 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  DeliveryRoute: DeliveryRoute,
+  FaqRoute: FaqRoute,
   MenswearRoute: MenswearRoute,
+  ReturnsRoute: ReturnsRoute,
+  SizeGuideRoute: SizeGuideRoute,
   WomenswearRoute: WomenswearRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
