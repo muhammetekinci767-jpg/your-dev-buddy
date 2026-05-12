@@ -33,7 +33,9 @@ const LanguageSwitcher = ({ variant = "nav" }: { variant?: "nav" | "footer" }) =
         }
       >
         <Globe size={16} strokeWidth={1.5} />
-        <span className="hidden sm:inline">{current.code.toUpperCase()}</span>
+        <span className="hidden sm:inline" suppressHydrationWarning>
+          {mounted ? current.code.toUpperCase() : "EN"}
+        </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[140px]">
         {LANGS.map((l) => (
