@@ -305,18 +305,19 @@ const resources = {
   },
 };
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: "en",
-    supportedLngs: ["en", "tr", "de", "fr"],
-    interpolation: { escapeValue: false },
-    detection: {
-      order: ["localStorage", "navigator"],
-      caches: ["localStorage"],
-    },
-  });
+const isBrowser = typeof window !== "undefined";
+
+const chain = isBrowser ? i18n.use(LanguageDetector) : i18n;
+chain.use(initReactI18next).init({
+  resources,
+  fallbackLng: "en",
+  supportedLngs: ["en", "tr", "de", "fr"],
+  lng: isBrowser ? undefined : "en",
+  interpolation: { escapeValue: false },
+  detection: {
+    order: ["localStorage", "navigator"],
+    caches: ["localStorage"],
+  },
+});
 
 export default i18n;
