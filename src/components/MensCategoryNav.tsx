@@ -3,7 +3,7 @@ import p1 from "@/assets/mens-newin.jpg";
 import p2 from "@/assets/mens-tshirt.jpg";
 import p3 from "@/assets/mens-sleeveless.jpg";
 import p4 from "@/assets/mens-tank.jpg";
-import p5 from "@/assets/product-5.jpg";
+import p5 from "@/assets/mens-sweatshirt.jpg";
 import p6 from "@/assets/product-6.jpg";
 
 export type MensCategoryKey = "new-in" | "tshirt" | "sleeveless" | "tank" | "sweatshirt" | "pants";
