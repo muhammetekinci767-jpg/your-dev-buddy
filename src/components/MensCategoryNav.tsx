@@ -6,14 +6,14 @@ import p4 from "@/assets/mens-tank.jpg";
 import p5 from "@/assets/product-5.jpg";
 import p6 from "@/assets/product-6.jpg";
 
-export type MensCategoryKey = "new-in" | "tshirt" | "sleeveless" | "tank" | "sweatpants" | "pants";
+export type MensCategoryKey = "new-in" | "tshirt" | "sleeveless" | "tank" | "sweatshirt" | "pants";
 
 export const MENS_CATEGORIES: { key: MensCategoryKey; label: string; handles: string[]; image: string }[] = [
   { key: "new-in", label: "New In", handles: ["yeni", "new-in", "new", "yeni-gelenler", "mens-new-in"], image: p1 },
   { key: "tshirt", label: "T-Shirt", handles: ["erkek-tshirt", "tshirt", "t-shirt", "tisort", "mens-tshirt"], image: p2 },
   { key: "sleeveless", label: "Sleeveless Tee", handles: ["sleeveless", "sleeveless-tee", "kolsuz", "mens-sleeveless"], image: p3 },
   { key: "tank", label: "Core Tank", handles: ["tank", "core-tank", "atlet", "mens-tank"], image: p4 },
-  { key: "sweatpants", label: "Sweatpants", handles: ["sweatpants", "esofman", "esofman-alti", "mens-sweatpants"], image: p5 },
+  { key: "sweatshirt", label: "Sweatshirt", handles: ["sweatshirt", "sweat", "mens-sweatshirt"], image: p5 },
   { key: "pants", label: "Pants", handles: ["pants", "pantolon", "erkek-pantolon", "mens-pants"], image: p6 },
 ];
 
