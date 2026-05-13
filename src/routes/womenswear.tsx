@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ProductGrid";
+import WomensCategoryNav, { WOMENS_CATEGORIES, type WomensCategoryKey } from "@/components/WomensCategoryNav";
 import heroWomen from "@/assets/hero-women.jpg";
 
 export const Route = createFileRoute("/womenswear")({
@@ -11,6 +13,11 @@ export const Route = createFileRoute("/womenswear")({
 
 function Womenswear() {
   const { t } = useTranslation();
+  const [active, setActive] = useState<WomensCategoryKey>("new-in");
+  const cat = WOMENS_CATEGORIES.find((c) => c.key === active);
+  const handles = cat?.handles ?? [];
+  const title = t(`womens.categories.${active}`, { defaultValue: cat?.label ?? t("hero.women") });
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -33,7 +40,12 @@ function Womenswear() {
             </Link>
           </div>
         </section>
-        <ProductGrid collectionHandles={["kadin", "kadın", "kadin-giyim", "women", "womenswear", "womens"]} title={t("hero.women")} />
+
+        <WomensCategoryNav active={active} onChange={setActive} />
+
+        <div id="womens-grid">
+          <ProductGrid key={active} collectionHandles={handles} title={String(title)} />
+        </div>
       </main>
       <Footer />
     </div>
