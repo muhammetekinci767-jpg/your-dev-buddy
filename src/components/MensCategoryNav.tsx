@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import p1 from "@/assets/mens-newin.jpg";
 import p2 from "@/assets/mens-tshirt.jpg";
-import p3 from "@/assets/product-3.jpg";
+import p3 from "@/assets/mens-sleeveless.jpg";
 import p4 from "@/assets/product-4.jpg";
 import p5 from "@/assets/product-5.jpg";
 import p6 from "@/assets/product-6.jpg";
