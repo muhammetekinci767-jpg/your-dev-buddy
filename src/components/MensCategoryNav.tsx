@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "@tanstack/react-router";
 import p1 from "@/assets/mens-newin.jpg";
 import p2 from "@/assets/mens-tshirt.jpg";
 import p3 from "@/assets/mens-sleeveless.jpg";
@@ -18,11 +19,10 @@ export const MENS_CATEGORIES: { key: MensCategoryKey; label: string; handles: st
 ];
 
 interface Props {
-  active: MensCategoryKey;
-  onChange: (key: MensCategoryKey) => void;
+  active?: MensCategoryKey;
 }
 
-export default function MensCategoryNav({ active, onChange }: Props) {
+export default function MensCategoryNav({ active }: Props) {
   const { t } = useTranslation();
   return (
     <section className="px-2 md:px-4 py-8">
@@ -31,13 +31,11 @@ export default function MensCategoryNav({ active, onChange }: Props) {
           const isActive = c.key === active;
           const label = t(`mens.categories.${c.key}`, { defaultValue: c.label });
           return (
-            <button
+            <Link
               key={c.key}
-              onClick={() => {
-                onChange(c.key);
-                document.getElementById("mens-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-              className={`group relative overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary ${
+              to="/menswear/$category"
+              params={{ category: c.key }}
+              className={`group relative overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary block ${
                 isActive ? "ring-2 ring-foreground" : ""
               }`}
             >
@@ -53,7 +51,7 @@ export default function MensCategoryNav({ active, onChange }: Props) {
                   {String(label)}
                 </span>
               </div>
-            </button>
+            </Link>
           );
         })}
       </div>
