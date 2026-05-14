@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import p1 from "@/assets/womens-newin.jpg";
 import p2 from "@/assets/womens-tshirt.jpg";
 import p3 from "@/assets/womens-crop.jpg";
-import p4 from "@/assets/product-4.jpg";
+import p4 from "@/assets/womens-babytee.jpg";
 import p5 from "@/assets/womens-pants.jpg";
 
 export type WomensCategoryKey = "new-in" | "tshirt" | "crop-top" | "sweatpants" | "pants";
