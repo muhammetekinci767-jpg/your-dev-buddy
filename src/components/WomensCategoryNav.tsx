@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import p1 from "@/assets/product-1.jpg";
+import p1 from "@/assets/womens-newin.jpg";
 import p2 from "@/assets/womens-tshirt.jpg";
 import p3 from "@/assets/product-3.jpg";
 import p4 from "@/assets/product-4.jpg";
