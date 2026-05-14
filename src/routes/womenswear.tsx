@@ -1,10 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ProductGrid from "@/components/ProductGrid";
-import WomensCategoryNav, { WOMENS_CATEGORIES, type WomensCategoryKey } from "@/components/WomensCategoryNav";
+import WomensCategoryNav from "@/components/WomensCategoryNav";
 import heroWomen from "@/assets/hero-women.jpg";
 
 export const Route = createFileRoute("/womenswear")({
@@ -13,10 +11,6 @@ export const Route = createFileRoute("/womenswear")({
 
 function Womenswear() {
   const { t } = useTranslation();
-  const [active, setActive] = useState<WomensCategoryKey>("new-in");
-  const cat = WOMENS_CATEGORIES.find((c) => c.key === active);
-  const handles = cat?.handles ?? [];
-  const title = t(`womens.categories.${active}`, { defaultValue: cat?.label ?? t("hero.women") });
 
   return (
     <div className="min-h-screen bg-background">
@@ -32,20 +26,10 @@ function Womenswear() {
             <h1 className="text-hero-text text-4xl md:text-7xl font-light tracking-[0.18em] uppercase mb-6">
               {t("hero.women")}
             </h1>
-            <Link
-              to="/womenswear"
-              className="inline-block border border-hero-text/80 text-hero-text text-[11px] tracking-[0.25em] uppercase px-8 py-3 hover:bg-hero-text hover:text-foreground transition-colors duration-300"
-            >
-              {t("womens.heroCta")}
-            </Link>
           </div>
         </section>
 
-        <WomensCategoryNav active={active} onChange={setActive} />
-
-        <div id="womens-grid">
-          <ProductGrid key={active} collectionHandles={handles} title={String(title)} />
-        </div>
+        <WomensCategoryNav />
       </main>
       <Footer />
     </div>

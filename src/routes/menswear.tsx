@@ -1,10 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ProductGrid from "@/components/ProductGrid";
-import MensCategoryNav, { MENS_CATEGORIES, type MensCategoryKey } from "@/components/MensCategoryNav";
+import MensCategoryNav from "@/components/MensCategoryNav";
 import heroMen from "@/assets/hero-men.jpg";
 
 export const Route = createFileRoute("/menswear")({
@@ -13,9 +11,6 @@ export const Route = createFileRoute("/menswear")({
 
 function Menswear() {
   const { t } = useTranslation();
-  const [active, setActive] = useState<MensCategoryKey>("new-in");
-  const handles = MENS_CATEGORIES.find((c) => c.key === active)?.handles ?? [];
-  const title = t(`mens.categories.${active}`, { defaultValue: t("hero.men") });
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,20 +26,10 @@ function Menswear() {
             <h1 className="text-hero-text text-4xl md:text-7xl font-light tracking-[0.18em] uppercase mb-6">
               {t("hero.men")}
             </h1>
-            <Link
-              to="/menswear"
-              className="inline-block border border-hero-text/80 text-hero-text text-[11px] tracking-[0.25em] uppercase px-8 py-3 hover:bg-hero-text hover:text-foreground transition-colors duration-300"
-            >
-              {t("mens.heroCta")}
-            </Link>
           </div>
         </section>
 
-        <MensCategoryNav active={active} onChange={setActive} />
-
-        <div id="mens-grid">
-          <ProductGrid key={active} collectionHandles={handles} title={String(title)} />
-        </div>
+        <MensCategoryNav />
       </main>
       <Footer />
     </div>
