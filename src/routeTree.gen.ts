@@ -17,7 +17,9 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WomenswearCategoryRouteImport } from './routes/womenswear.$category'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as MenswearCategoryRouteImport } from './routes/menswear.$category'
 
 const WomenswearRoute = WomenswearRouteImport.update({
   id: '/womenswear',
@@ -59,10 +61,20 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WomenswearCategoryRoute = WomenswearCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => WomenswearRoute,
+} as any)
 const ProductHandleRoute = ProductHandleRouteImport.update({
   id: '/product/$handle',
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
+} as any)
+const MenswearCategoryRoute = MenswearCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => MenswearRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -70,22 +82,26 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/faq': typeof FaqRoute
-  '/menswear': typeof MenswearRoute
+  '/menswear': typeof MenswearRouteWithChildren
   '/returns': typeof ReturnsRoute
   '/size-guide': typeof SizeGuideRoute
-  '/womenswear': typeof WomenswearRoute
+  '/womenswear': typeof WomenswearRouteWithChildren
+  '/menswear/$category': typeof MenswearCategoryRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/womenswear/$category': typeof WomenswearCategoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/faq': typeof FaqRoute
-  '/menswear': typeof MenswearRoute
+  '/menswear': typeof MenswearRouteWithChildren
   '/returns': typeof ReturnsRoute
   '/size-guide': typeof SizeGuideRoute
-  '/womenswear': typeof WomenswearRoute
+  '/womenswear': typeof WomenswearRouteWithChildren
+  '/menswear/$category': typeof MenswearCategoryRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/womenswear/$category': typeof WomenswearCategoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -93,11 +109,13 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/faq': typeof FaqRoute
-  '/menswear': typeof MenswearRoute
+  '/menswear': typeof MenswearRouteWithChildren
   '/returns': typeof ReturnsRoute
   '/size-guide': typeof SizeGuideRoute
-  '/womenswear': typeof WomenswearRoute
+  '/womenswear': typeof WomenswearRouteWithChildren
+  '/menswear/$category': typeof MenswearCategoryRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/womenswear/$category': typeof WomenswearCategoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -110,7 +128,9 @@ export interface FileRouteTypes {
     | '/returns'
     | '/size-guide'
     | '/womenswear'
+    | '/menswear/$category'
     | '/product/$handle'
+    | '/womenswear/$category'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -121,7 +141,9 @@ export interface FileRouteTypes {
     | '/returns'
     | '/size-guide'
     | '/womenswear'
+    | '/menswear/$category'
     | '/product/$handle'
+    | '/womenswear/$category'
   id:
     | '__root__'
     | '/'
@@ -132,7 +154,9 @@ export interface FileRouteTypes {
     | '/returns'
     | '/size-guide'
     | '/womenswear'
+    | '/menswear/$category'
     | '/product/$handle'
+    | '/womenswear/$category'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -140,10 +164,10 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DeliveryRoute: typeof DeliveryRoute
   FaqRoute: typeof FaqRoute
-  MenswearRoute: typeof MenswearRoute
+  MenswearRoute: typeof MenswearRouteWithChildren
   ReturnsRoute: typeof ReturnsRoute
   SizeGuideRoute: typeof SizeGuideRoute
-  WomenswearRoute: typeof WomenswearRoute
+  WomenswearRoute: typeof WomenswearRouteWithChildren
   ProductHandleRoute: typeof ProductHandleRoute
 }
 
@@ -205,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/womenswear/$category': {
+      id: '/womenswear/$category'
+      path: '/$category'
+      fullPath: '/womenswear/$category'
+      preLoaderRoute: typeof WomenswearCategoryRouteImport
+      parentRoute: typeof WomenswearRoute
+    }
     '/product/$handle': {
       id: '/product/$handle'
       path: '/product/$handle'
@@ -212,20 +243,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/menswear/$category': {
+      id: '/menswear/$category'
+      path: '/$category'
+      fullPath: '/menswear/$category'
+      preLoaderRoute: typeof MenswearCategoryRouteImport
+      parentRoute: typeof MenswearRoute
+    }
   }
 }
+
+interface MenswearRouteChildren {
+  MenswearCategoryRoute: typeof MenswearCategoryRoute
+}
+
+const MenswearRouteChildren: MenswearRouteChildren = {
+  MenswearCategoryRoute: MenswearCategoryRoute,
+}
+
+const MenswearRouteWithChildren = MenswearRoute._addFileChildren(
+  MenswearRouteChildren,
+)
+
+interface WomenswearRouteChildren {
+  WomenswearCategoryRoute: typeof WomenswearCategoryRoute
+}
+
+const WomenswearRouteChildren: WomenswearRouteChildren = {
+  WomenswearCategoryRoute: WomenswearCategoryRoute,
+}
+
+const WomenswearRouteWithChildren = WomenswearRoute._addFileChildren(
+  WomenswearRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   DeliveryRoute: DeliveryRoute,
   FaqRoute: FaqRoute,
-  MenswearRoute: MenswearRoute,
+  MenswearRoute: MenswearRouteWithChildren,
   ReturnsRoute: ReturnsRoute,
   SizeGuideRoute: SizeGuideRoute,
-  WomenswearRoute: WomenswearRoute,
+  WomenswearRoute: WomenswearRouteWithChildren,
   ProductHandleRoute: ProductHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
