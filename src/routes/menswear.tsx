@@ -1,10 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ProductGrid from "@/components/ProductGrid";
-import MensCategoryNav, { MENS_CATEGORIES, type MensCategoryKey } from "@/components/MensCategoryNav";
+import MensCategoryNav from "@/components/MensCategoryNav";
 import heroMen from "@/assets/hero-men.jpg";
 
 export const Route = createFileRoute("/menswear")({
