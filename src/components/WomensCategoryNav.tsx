@@ -11,7 +11,7 @@ export const WOMENS_CATEGORIES: { key: WomensCategoryKey; label: string; handles
   { key: "new-in", label: "New In", handles: ["yeni-kadin", "new-in-women", "womens-new-in", "yeni", "new-in"], image: p1 },
   { key: "tshirt", label: "T-Shirt", handles: ["kadin-tshirt", "womens-tshirt", "tshirt", "tisort"], image: p2 },
   { key: "crop-top", label: "Crop Top", handles: ["crop-top", "crop", "kadin-crop", "womens-crop"], image: p3 },
-  { key: "sweatpants", label: "Sweatpants", handles: ["kadin-sweatpants", "womens-sweatpants", "esofman-kadin", "sweatpants"], image: p4 },
+  { key: "sweatpants", label: "Baby Tee", handles: ["kadin-sweatpants", "womens-sweatpants", "esofman-kadin", "sweatpants", "baby-tee", "babytee"], image: p4 },
   { key: "pants", label: "Pants", handles: ["kadin-pantolon", "womens-pants", "pants", "pantolon"], image: p5 },
 ];
 
