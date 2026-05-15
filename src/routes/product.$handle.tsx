@@ -11,12 +11,15 @@ export const Route = createFileRoute("/product/$handle")({
   component: ProductDetail,
 });
 
+const SIZES = ["S/M", "L/XL"];
+
 function ProductDetail() {
   const { handle } = Route.useParams();
   const { product, loading } = useShopifyProduct(handle);
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
   const [variantIdx, setVariantIdx] = useState(0);
+  const [size, setSize] = useState<string | null>(null);
   const [imgIdx, setImgIdx] = useState(0);
 
   const variant = product?.variants.edges[variantIdx]?.node;
@@ -26,6 +29,8 @@ function ProductDetail() {
 
   const prev = () => setImgIdx((i) => (i - 1 + images.length) % images.length);
   const next = () => setImgIdx((i) => (i + 1) % images.length);
+
+  const hasMultipleVariants = (product?.variants.edges.length ?? 0) > 1;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -39,7 +44,7 @@ function ProductDetail() {
           <p className="text-center text-muted-foreground py-32">Ürün bulunamadı.</p>
         ) : (
           <div className="grid lg:grid-cols-2">
-            {/* Image side */}
+            {/* Image */}
             <div className="relative bg-secondary aspect-square lg:aspect-auto lg:min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
               {currentImage && (
                 <img
@@ -68,7 +73,7 @@ function ProductDetail() {
               )}
             </div>
 
-            {/* Info side */}
+            {/* Info */}
             <div className="flex items-center justify-center px-6 lg:px-16 py-12 lg:py-0">
               <div className="w-full max-w-md space-y-8">
                 <div className="flex items-start justify-between gap-4">
@@ -85,14 +90,9 @@ function ProductDetail() {
                   </button>
                 </div>
 
-                {product.variants.edges.length > 0 && (
-                  <div className="space-y-4 pt-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm">Beden:</p>
-                      <button className="text-sm underline underline-offset-4 hover:opacity-60">
-                        Beden Rehberi
-                      </button>
-                    </div>
+                {hasMultipleVariants && (
+                  <div className="space-y-4 pt-2">
+                    <p className="text-sm">Renk:</p>
                     <div className="flex flex-wrap gap-6">
                       {product.variants.edges.map((v, i) => (
                         <button
@@ -109,29 +109,56 @@ function ProductDetail() {
                         </button>
                       ))}
                     </div>
-                    {variant?.availableForSale && (
-                      <p className="text-xs text-muted-foreground pt-2">Stokta var.</p>
-                    )}
                   </div>
                 )}
 
+                <div className="space-y-4 pt-2">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm">Beden:</p>
+                    <button className="text-sm underline underline-offset-4 hover:opacity-60">
+                      Beden Rehberi
+                    </button>
+                  </div>
+                  <div className="flex flex-wrap gap-6">
+                    {SIZES.map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => setSize(s)}
+                        className={`text-sm pb-1 transition-all ${
+                          size === s
+                            ? "border-b border-foreground font-medium"
+                            : "border-b border-transparent hover:border-foreground/40"
+                        }`}
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                  {size && <p className="text-xs text-muted-foreground pt-1">Stokta var.</p>}
+                </div>
+
                 <button
-                  disabled={!variant || !variant.availableForSale || isLoading}
+                  disabled={!variant || !variant.availableForSale || isLoading || !size}
                   onClick={() => {
-                    if (!variant || !productNode) return;
+                    if (!variant || !productNode || !size) return;
                     addItem({
                       product: productNode as never,
                       variantId: variant.id,
-                      variantTitle: variant.title,
+                      variantTitle: `${variant.title} • ${size}`,
                       price: variant.price,
                       quantity: 1,
-                      selectedOptions: variant.selectedOptions || [],
+                      selectedOptions: [
+                        ...(variant.selectedOptions || []),
+                        { name: "Beden", value: size },
+                      ],
                     });
                   }}
                   className="w-full bg-foreground text-background py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50 flex items-center justify-center"
                 >
                   {isLoading ? (
                     <Loader2 className="animate-spin" size={16} />
+                  ) : !size ? (
+                    "Beden Seç"
                   ) : variant?.availableForSale ? (
                     "Sepete Ekle"
                   ) : (
