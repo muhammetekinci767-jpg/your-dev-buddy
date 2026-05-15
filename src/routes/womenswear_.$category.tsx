@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ProductGrid";
 import WomensCategoryNav, { WOMENS_CATEGORIES, type WomensCategoryKey } from "@/components/WomensCategoryNav";
 
-export const Route = createFileRoute("/womenswear/$category")({
+export const Route = createFileRoute("/womenswear_/$category")({
   component: WomenswearCategory,
   notFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center">

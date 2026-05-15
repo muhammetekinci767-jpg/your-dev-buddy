@@ -6,7 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 import MensCategoryNav, { MENS_CATEGORIES, type MensCategoryKey } from "@/components/MensCategoryNav";
 import heroMen from "@/assets/hero-men.jpg";
 
-export const Route = createFileRoute("/menswear/$category")({
+export const Route = createFileRoute("/menswear_/$category")({
   component: MenswearCategory,
   notFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center">
