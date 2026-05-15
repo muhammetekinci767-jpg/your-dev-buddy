@@ -22,9 +22,9 @@ function MenswearCategory() {
   const title = t(`mens.categories.${cat.key}`, { defaultValue: cat.label });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      <main>
+      <main className="flex-1">
         <div className="px-4 md:px-6 pt-8 pb-2">
           <nav className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
             <Link to="/" className="hover:text-foreground">Home</Link>
