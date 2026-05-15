@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { useShopifyProduct } from "@/hooks/useShopifyProducts";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
@@ -18,76 +17,136 @@ function ProductDetail() {
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
   const [variantIdx, setVariantIdx] = useState(0);
+  const [imgIdx, setImgIdx] = useState(0);
 
   const variant = product?.variants.edges[variantIdx]?.node;
   const productNode = useMemo(() => (product ? { node: product } : null), [product]);
+  const images = product?.images.edges ?? [];
+  const currentImage = images[imgIdx]?.node;
+
+  const prev = () => setImgIdx((i) => (i - 1 + images.length) % images.length);
+  const next = () => setImgIdx((i) => (i + 1) % images.length);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <main className="container mx-auto px-4 py-12">
+      <main className="flex-1">
         {loading ? (
-          <div className="flex justify-center py-20">
+          <div className="flex justify-center py-32">
             <Loader2 className="animate-spin" />
           </div>
         ) : !product ? (
-          <p className="text-center text-muted-foreground">Ürün bulunamadı.</p>
+          <p className="text-center text-muted-foreground py-32">Ürün bulunamadı.</p>
         ) : (
-          <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 gap-3">
-              {product.images.edges.map((img, i) => (
+          <div className="grid lg:grid-cols-2">
+            {/* Image side */}
+            <div className="relative bg-secondary aspect-square lg:aspect-auto lg:min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
+              {currentImage && (
                 <img
-                  key={i}
-                  src={img.node.url}
-                  alt={img.node.altText ?? product.title}
-                  className="w-full aspect-[3/4] object-cover bg-secondary"
+                  src={currentImage.url}
+                  alt={currentImage.altText ?? product.title}
+                  className="w-full h-full object-cover"
                 />
-              ))}
+              )}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={prev}
+                    aria-label="Önceki"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity"
+                  >
+                    <ChevronLeft size={28} strokeWidth={1.5} />
+                  </button>
+                  <button
+                    onClick={next}
+                    aria-label="Sonraki"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity"
+                  >
+                    <ChevronRight size={28} strokeWidth={1.5} />
+                  </button>
+                </>
+              )}
             </div>
-            <div className="space-y-6">
-              <h1 className="text-2xl md:text-3xl font-light tracking-wide">{product.title}</h1>
-              {variant && (
-                <p className="text-xl">{formatPrice(variant.price.amount, variant.price.currencyCode)}</p>
-              )}
-              <p className="text-sm text-muted-foreground whitespace-pre-line">{product.description}</p>
-              {product.variants.edges.length > 1 && (
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-wider">Seçenek</p>
-                  <div className="flex flex-wrap gap-2">
-                    {product.variants.edges.map((v, i) => (
-                      <button
-                        key={v.node.id}
-                        onClick={() => setVariantIdx(i)}
-                        className={`px-3 py-2 text-xs border ${
-                          i === variantIdx
-                            ? "border-foreground bg-foreground text-background"
-                            : "border-border"
-                        }`}
-                      >
-                        {v.node.title}
-                      </button>
-                    ))}
+
+            {/* Info side */}
+            <div className="flex items-center justify-center px-6 lg:px-16 py-12 lg:py-0">
+              <div className="w-full max-w-md space-y-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-3">
+                    <h1 className="text-base font-normal tracking-wide">{product.title}</h1>
+                    {variant && (
+                      <p className="text-base">
+                        {formatPrice(variant.price.amount, variant.price.currencyCode)}
+                      </p>
+                    )}
                   </div>
+                  <button aria-label="Favorilere ekle" className="hover:opacity-60 transition-opacity">
+                    <Heart size={20} strokeWidth={1.5} />
+                  </button>
                 </div>
-              )}
-              <Button
-                size="lg"
-                disabled={!variant || !variant.availableForSale || isLoading}
-                onClick={() => {
-                  if (!variant || !productNode) return;
-                  addItem({
-                    product: productNode as never,
-                    variantId: variant.id,
-                    variantTitle: variant.title,
-                    price: variant.price,
-                    quantity: 1,
-                    selectedOptions: variant.selectedOptions || [],
-                  });
-                }}
-                className="w-full"
-              >
-                {isLoading ? <Loader2 className="animate-spin" /> : variant?.availableForSale ? "Sepete Ekle" : "Tükendi"}
-              </Button>
+
+                {product.variants.edges.length > 0 && (
+                  <div className="space-y-4 pt-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm">Beden:</p>
+                      <button className="text-sm underline underline-offset-4 hover:opacity-60">
+                        Beden Rehberi
+                      </button>
+                    </div>
+                    <div className="flex flex-wrap gap-6">
+                      {product.variants.edges.map((v, i) => (
+                        <button
+                          key={v.node.id}
+                          onClick={() => setVariantIdx(i)}
+                          disabled={!v.node.availableForSale}
+                          className={`text-sm pb-1 transition-all ${
+                            i === variantIdx
+                              ? "border-b border-foreground font-medium"
+                              : "border-b border-transparent hover:border-foreground/40"
+                          } ${!v.node.availableForSale ? "line-through opacity-40" : ""}`}
+                        >
+                          {v.node.title}
+                        </button>
+                      ))}
+                    </div>
+                    {variant?.availableForSale && (
+                      <p className="text-xs text-muted-foreground pt-2">Stokta var.</p>
+                    )}
+                  </div>
+                )}
+
+                <button
+                  disabled={!variant || !variant.availableForSale || isLoading}
+                  onClick={() => {
+                    if (!variant || !productNode) return;
+                    addItem({
+                      product: productNode as never,
+                      variantId: variant.id,
+                      variantTitle: variant.title,
+                      price: variant.price,
+                      quantity: 1,
+                      selectedOptions: variant.selectedOptions || [],
+                    });
+                  }}
+                  className="w-full bg-foreground text-background py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50 flex items-center justify-center"
+                >
+                  {isLoading ? (
+                    <Loader2 className="animate-spin" size={16} />
+                  ) : variant?.availableForSale ? (
+                    "Sepete Ekle"
+                  ) : (
+                    "Tükendi"
+                  )}
+                </button>
+
+                {product.description && (
+                  <div className="pt-6 border-t border-border">
+                    <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed">
+                      {product.description}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
