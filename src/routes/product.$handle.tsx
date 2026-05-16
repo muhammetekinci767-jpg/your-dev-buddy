@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Heart, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, Loader2, Plus, Minus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProductGrid from "@/components/ProductGrid";
 import { useShopifyProduct } from "@/hooks/useShopifyProducts";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/product/$handle")({
 });
 
 const SIZES = ["S/M", "L/XL"];
+const MENS_HANDLES = ["erkek", "new-in-man", "pants-man", "sleeves-tee", "core-tank", "sweatshirt"];
+const WOMENS_HANDLES = ["kadin", "new-in-women", "pants-women", "crop-top", "baby-tee"];
 
 function ProductDetail() {
   const { handle } = Route.useParams();
@@ -21,9 +24,16 @@ function ProductDetail() {
   const [variantIdx, setVariantIdx] = useState(0);
   const [size, setSize] = useState<string | null>(null);
   const [imgIdx, setImgIdx] = useState(0);
+  const [descOpen, setDescOpen] = useState(false);
 
   const variant = product?.variants.edges[variantIdx]?.node;
   const productNode = useMemo(() => (product ? { node: product } : null), [product]);
+
+  const collectionHandles: string[] = ((product as unknown as { collections?: { edges: { node: { handle: string } }[] } } | null)?.collections?.edges ?? []).map((e) => e.node.handle);
+  const isWomens = collectionHandles.some((h) => WOMENS_HANDLES.includes(h));
+  const isMens = collectionHandles.some((h) => MENS_HANDLES.includes(h));
+  const relatedHandle = isWomens ? "kadin" : isMens ? "erkek" : null;
+  const relatedTitle = isWomens ? "Kadın için diğer ürünler" : "Erkek için diğer ürünler";
   const images = product?.images.edges ?? [];
   const currentImage = images[imgIdx]?.node;
 
@@ -167,15 +177,29 @@ function ProductDetail() {
                 </button>
 
                 {product.description && (
-                  <div className="pt-6 border-t border-border">
-                    <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed">
-                      {product.description}
-                    </p>
+                  <div className="pt-2 border-t border-border">
+                    <button
+                      onClick={() => setDescOpen((o) => !o)}
+                      className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
+                      aria-expanded={descOpen}
+                    >
+                      <span>Açıklama</span>
+                      {descOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
+                    </button>
+                    {descOpen && (
+                      <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed pb-6">
+                        {product.description}
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
             </div>
           </div>
+        )}
+
+        {product && relatedHandle && (
+          <ProductGrid collectionHandles={[relatedHandle]} title={relatedTitle} />
         )}
       </main>
       <Footer />
