@@ -10,12 +10,12 @@ import p6 from "@/assets/mens-pants.jpg";
 export type MensCategoryKey = "new-in" | "tshirt" | "sleeveless" | "tank" | "sweatshirt" | "pants";
 
 export const MENS_CATEGORIES: { key: MensCategoryKey; label: string; handles: string[]; image: string }[] = [
-  { key: "new-in", label: "New In", handles: ["new-in-man", "new-in-men", "mens-new-in", "new-in"], image: p1 },
-  { key: "tshirt", label: "T-Shirt", handles: ["t-shirt-man", "tshirt-man", "mens-tshirt", "t-shirt", "tshirt"], image: p2 },
-  { key: "sleeveless", label: "Sleeveless Tee", handles: ["sleeves-tee", "sleeveless-tee", "sleeveless"], image: p3 },
-  { key: "tank", label: "Core Tank", handles: ["core-tank", "tank"], image: p4 },
+  { key: "new-in", label: "New In", handles: ["new-in-man"], image: p1 },
+  { key: "tshirt", label: "T-Shirt", handles: ["t-shirt"], image: p2 },
+  { key: "sleeveless", label: "Sleeveless Tee", handles: ["sleeves-tee-1"], image: p3 },
+  { key: "tank", label: "Core Tank", handles: ["core-tank"], image: p4 },
   { key: "sweatshirt", label: "Sweatshirt", handles: ["sweatshirt"], image: p5 },
-  { key: "pants", label: "Pants", handles: ["pants-man", "pants-men", "mens-pants", "pants"], image: p6 },
+  { key: "pants", label: "Pants", handles: ["sleeves-tee"], image: p6 },
 ];
 
 interface Props {
