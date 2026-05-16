@@ -12,10 +12,10 @@ export type MensCategoryKey = "new-in" | "tshirt" | "sleeveless" | "tank" | "swe
 export const MENS_CATEGORIES: { key: MensCategoryKey; label: string; handles: string[]; image: string }[] = [
   { key: "new-in", label: "New In", handles: ["new-in-man"], image: p1 },
   { key: "tshirt", label: "T-Shirt", handles: ["t-shirt"], image: p2 },
-  { key: "sleeveless", label: "Sleeveless Tee", handles: ["sleeves-tee-1"], image: p3 },
+  { key: "sleeveless", label: "Sleeveless Tee", handles: ["sleeves-tee"], image: p3 },
   { key: "tank", label: "Core Tank", handles: ["core-tank"], image: p4 },
   { key: "sweatshirt", label: "Sweatshirt", handles: ["sweatshirt"], image: p5 },
-  { key: "pants", label: "Pants", handles: ["sleeves-tee"], image: p6 },
+  { key: "pants", label: "Pants", handles: ["pants-man"], image: p6 },
 ];
 
 interface Props {
