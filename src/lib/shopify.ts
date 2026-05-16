@@ -99,6 +99,7 @@ export const PRODUCT_BY_HANDLE_QUERY = `
         }
       }
       options { name values }
+      collections(first: 10) { edges { node { handle title } } }
     }
   }
 `;
