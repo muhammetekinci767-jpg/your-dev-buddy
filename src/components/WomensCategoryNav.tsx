@@ -9,11 +9,11 @@ import p5 from "@/assets/womens-pants.jpg";
 export type WomensCategoryKey = "new-in" | "tshirt" | "crop-top" | "sweatpants" | "pants";
 
 export const WOMENS_CATEGORIES: { key: WomensCategoryKey; label: string; handles: string[]; image: string }[] = [
-  { key: "new-in", label: "New In", handles: ["yeni-kadin", "new-in-women", "womens-new-in", "yeni", "new-in"], image: p1 },
-  { key: "tshirt", label: "T-Shirt", handles: ["kadin-tshirt", "womens-tshirt", "tshirt", "tisort"], image: p2 },
-  { key: "crop-top", label: "Crop Top", handles: ["crop-top", "crop", "kadin-crop", "womens-crop"], image: p3 },
-  { key: "sweatpants", label: "Baby Tee", handles: ["kadin-sweatpants", "womens-sweatpants", "esofman-kadin", "sweatpants", "baby-tee", "babytee"], image: p4 },
-  { key: "pants", label: "Pants", handles: ["kadin-pantolon", "womens-pants", "pants", "pantolon"], image: p5 },
+  { key: "new-in", label: "New In", handles: ["new-in-women", "new-in-woman", "womens-new-in"], image: p1 },
+  { key: "tshirt", label: "T-Shirt", handles: ["t-shirt-women", "t-shirt-woman", "tshirt-women", "womens-tshirt"], image: p2 },
+  { key: "crop-top", label: "Crop Top", handles: ["crop-top", "crop"], image: p3 },
+  { key: "sweatpants", label: "Baby Tee", handles: ["baby-tee", "babytee"], image: p4 },
+  { key: "pants", label: "Pants", handles: ["pants-women", "pants-woman", "womens-pants"], image: p5 },
 ];
 
 interface Props {
