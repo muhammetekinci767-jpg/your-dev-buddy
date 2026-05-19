@@ -1,7 +1,10 @@
+
+Copy
+
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-
+ 
 const resources = {
   en: {
     translation: {
@@ -136,12 +139,18 @@ const resources = {
           "İndirimli ürünler ve aksesuarlar iade edilemez."
         ],
         sizeGuide: [
-          "Parçalarımız rahat bir kalıpla tasarlanmıştır. İki beden arasında kaldıysanız, daha oturan bir görünüm için küçük, oversize için büyük bedeni öneririz.",
-          "XS: göğüs 86 cm / bel 68 cm",
-          "S: göğüs 92 cm / bel 74 cm",
-          "M: göğüs 98 cm / bel 80 cm",
-          "L: göğüs 104 cm / bel 86 cm",
-          "XL: göğüs 110 cm / bel 92 cm"
+          "T-Shirt: Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
+          "S/M Beden → En: 59-60 cm | Boy: 62-63 cm",
+          "L/XL Beden → En: 63-64 cm | Boy: 66-67 cm",
+          "Sweatshirt: Ürünümüz TR / EU standartlarına uygun olarak STANDART (Tek Beden) seçeneğiyle üretilmiştir.",
+          "STANDART Beden → En: 60-61 cm | Boy: 63-64 cm",
+          "Sleeveless Tee (Sıfır Kol): Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
+          "S/M Beden → En: 59-60 cm | Boy: 62-63 cm",
+          "L/XL Beden → En: 63-64 cm | Boy: 66-67 cm",
+          "Sweatpant: Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
+          "S/M Beden → Bel: 36-37 cm | Boy: 100 cm",
+          "L/XL Beden → Bel: 40-41 cm | Boy: 100-102 cm",
+          "Önemli Notlar: TR / EU beden ölçüleri arasında ortalama 4-5 cm (Sweatpant için 2-3 cm) fark bulunmaktadır. El ile yapılan manuel ölçümler nedeniyle ±1–2 cm değişiklik görülebilir. Sweatpant'ın paçasında lastik, belinde ayarlanabilir kordon bulunmaktadır."
         ],
         faq: [
           "Ürünleriniz nerede üretiliyor? — Stüdyomuzda tasarlanır, güvendiğimiz iş ortaklarıyla küçük partiler halinde üretilir.",
@@ -304,9 +313,9 @@ const resources = {
     },
   },
 };
-
+ 
 const isBrowser = typeof window !== "undefined";
-
+ 
 const chain = isBrowser ? i18n.use(LanguageDetector) : i18n;
 chain.use(initReactI18next).init({
   resources,
@@ -319,5 +328,5 @@ chain.use(initReactI18next).init({
     caches: ["localStorage"],
   },
 });
-
+ 
 export default i18n;
