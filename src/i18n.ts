@@ -6,7 +6,7 @@ const resources = {
   en: {
     translation: {
       nav: { women: "Women", men: "Men", denim: "Denim", newIn: "New In", search: "Search", cart: "Cart", menu: "Menu" },
-      hero: { women: "Womenswear", men: "Menswear" },
+      hero: { women: "Womenwear", men: "Menwear" }, // Buradaki "s" harfleri uçuruldu
       page: { comingSoon: "New collection coming soon." },
       mens: {
         heroTagline: "The new drop is here",
@@ -61,12 +61,22 @@ const resources = {
           "Sale items and accessories are final sale."
         ],
         sizeGuide: [
-          "Our pieces are designed with a relaxed fit. If you're between sizes, we recommend sizing down for a tailored look or up for an oversized feel.",
-          "XS: chest 86 cm / waist 68 cm",
-          "S: chest 92 cm / waist 74 cm",
-          "M: chest 98 cm / waist 80 cm",
-          "L: chest 104 cm / waist 86 cm",
-          "XL: chest 110 cm / waist 92 cm"
+          "■ T-SHIRT & SLEEVELESS TEE",
+          "Our products are produced in two double size options as S/M and L/XL in accordance with TR / EU standards.",
+          "• S/M Size -> Width: 59-60 cm | Length: 62-63 cm",
+          "• L/XL Size -> Width: 63-64 cm | Length: 66-67 cm",
+          "Important Notes: There is an average of 4-5 cm difference between TR / EU sizes. Due to manual measurements, a variation of ±1-2 cm may be observed.",
+          " ",
+          "■ SWEATSHIRT",
+          "Our product is produced with STANDARD (One Size) option in accordance with TR / EU standards.",
+          "• STANDARD Size -> Width: 60-61 cm | Length: 63-64 cm",
+          "Important Notes: Our standard size design is molded to fit different body types. Due to manual measurements, a variation of ±1-2 cm may be observed.",
+          " ",
+          "■ SWEATPANT",
+          "Our products are produced in two double size options as S/M and L/XL in accordance with TR / EU standards.",
+          "• S/M Size -> Waist: 36-37 cm | Length: 100 cm",
+          "• L/XL Size -> Waist: 40-41 cm | Length: 100-102 cm",
+          "Important Notes: The product features elastic cuffs and an adjustable drawcord at the waist; you can easily optimize the fit for yourself. There is an average of 2-3 cm difference between TR / EU sizes. Due to manual measurements, a variation of ±1-2 cm may be observed."
         ],
         faq: [
           "Where are your pieces made? — Designed in our studio and produced in small batches with trusted partners.",
@@ -81,7 +91,7 @@ const resources = {
   tr: {
     translation: {
       nav: { women: "Kadın", men: "Erkek", denim: "Denim", newIn: "Yeni Gelenler", search: "Ara", cart: "Sepet", menu: "Menü" },
-      hero: { women: "Kadın Koleksiyonu", men: "Erkek Koleksiyonu" },
+      hero: { women: "Womenwear", men: "Menwear" }, // Türkçe seçildiğinde de İngilizce görünmesi sağlandı
       page: { comingSoon: "Yeni koleksiyon yakında burada." },
       mens: {
         heroTagline: "Yeni koleksiyon burada",
@@ -136,15 +146,25 @@ const resources = {
           "İndirimli ürünler ve aksesuarlar iade edilemez."
         ],
         sizeGuide: [
-          "Parçalarımız rahat bir kalıpla tasarlanmıştır. İki beden arasında kaldıysanız, daha oturan bir görünüm için küçük, oversize için büyük bedeni öneririz.",
-          "XS: göğüs 86 cm / bel 68 cm",
-          "S: göğüs 92 cm / bel 74 cm",
-          "M: göğüs 98 cm / bel 80 cm",
-          "L: göğüs 104 cm / bel 86 cm",
-          "XL: göğüs 110 cm / bel 92 cm"
+          "■ T-SHIRT & SLEEVELESS TEE (SIFIR KOL)",
+          "Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
+          "• S/M Beden -> En: 59-60 cm | Boy: 62-63 cm",
+          "• L/XL Beden -> En: 63-64 cm | Boy: 66-67 cm",
+          "Önemli Notlar: TR / EU beden ölçüleri arasında ortalama 4-5 cm fark bulunmaktadır. El ile yapılan manuel ölçümler nedeniyle, belirtilen ölçülerde ±1–2 cm değişiklik görülebilir.",
+          " ",
+          "■ SWEATSHIRT",
+          "Ürünümüz TR / EU standartlarına uygun olarak STANDART (Tek Beden) seçeneğiyle üretilmiştir.",
+          "• STANDART Beden -> En: 60-61 cm | Boy: 63-64 cm",
+          "Önemli Notlar: Standart beden tasarımımız farklı vücut tiplerine uyum sağlayacak şekilde kalıplanmıştır. El ile yapılan manuel ölçümler nedeniyle, belirtilen ölçülerde ±1–2 cm değişiklik görülebilir.",
+          " ",
+          "■ SWEATPANT (EŞOFMAN)",
+          "Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
+          "• S/M Beden -> Bel: 36-37 cm | Boy: 100 cm",
+          "• L/XL Beden -> Bel: 40-41 cm | Boy: 100-102 cm",
+          "Önemli Notlar: Ürünün paçasında lastik, belinde ise ayarlanabilir kordon (ip) bulunmaktadır; kalıbı kendinize göre rahatça optimize edebilirsiniz. TR / EU beden ölçüleri arasında ortalama 2-3 cm fark bulunmaktadır. El ile yapılan manuel ölçümler nedeniyle, belirtilen ölçülerde ±1–2 cm değişiklik görülebilir."
         ],
         faq: [
-          "Ürünleriniz nerede üretiliyor? — Stüdyomuzda tasarlanır, güvendiğimiz iş ortaklarıyla küçük partiler halinde üretilir.",
+          "Ürünlerinizi nerede üretiliyor? — Stüdyomuzda tasarlanır, güvendiğimiz iş ortaklarıyla küçük partiler halinde üretilir.",
           "Hangi ödeme yöntemlerini kabul ediyorsunuz? — Tüm büyük kredi kartları ve dijital cüzdanlar.",
           "Siparişimi değiştirebilir veya iptal edebilir miyim? — Sipariş verdikten sonraki 12 saat içinde bize ulaşın.",
           "Tükenen ürünler tekrar gelir mi? — Bazı parçalar tekrar gelir, güncellemeler için Instagram'dan bizi takip edin."
@@ -156,7 +176,7 @@ const resources = {
   de: {
     translation: {
       nav: { women: "Damen", men: "Herren", denim: "Denim", newIn: "Neuheiten", search: "Suche", cart: "Warenkorb", menu: "Menü" },
-      hero: { women: "Damenmode", men: "Herrenmode" },
+      hero: { women: "Womenwear", men: "Menwear" }, // Almanca için de eşitlendi
       page: { comingSoon: "Neue Kollektion bald verfügbar." },
       mens: {
         heroTagline: "Die neue Kollektion ist da",
@@ -165,6 +185,7 @@ const resources = {
         categories: { tops: "Oberteile", bottoms: "Hosen", outerwear: "Jacken", denim: "Denim", accessories: "Accessoires", all: "Alles anzeigen" },
         featured: "Highlights",
         newArrivals: "Neuheiten",
+        all: "Alle ansehen",
         viewAll: "Alle ansehen",
         editorialTitle: "Gemacht für die Nacht",
         editorialText: "Mutige Silhouetten, rohe Texturen und Statement-Pieces zum Tragen.",
@@ -211,12 +232,22 @@ const resources = {
           "Sale-Artikel und Accessoires sind vom Umtausch ausgeschlossen."
         ],
         sizeGuide: [
-          "Unsere Stücke haben einen lockeren Schnitt. Bei Zwischengrößen empfehlen wir eine Nummer kleiner für eine taillierte Passform oder größer für einen Oversize-Look.",
-          "XS: Brust 86 cm / Taille 68 cm",
-          "S: Brust 92 cm / Taille 74 cm",
-          "M: Brust 98 cm / Taille 80 cm",
-          "L: Brust 104 cm / Taille 86 cm",
-          "XL: Brust 110 cm / Taille 92 cm"
+          "■ T-SHIRT & ÄRMELLOSES T-SHIRT",
+          "Unsere Produkte werden in zwei Doppelgrößen als S/M und L/XL in Übereinstimmung mit TR / EU-Standards hergestellt.",
+          "• Größe S/M -> Breite: 59-60 cm | Länge: 62-63 cm",
+          "• Größe L/XL -> Breite: 63-64 cm | Länge: 66-67 cm",
+          "Wichtige Hinweise: Es gibt einen durchschnittlichen Unterschied von 4-5 cm zwischen TR / EU-Größen. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.",
+          " ",
+          "■ SWEATSHIRT",
+          "Unser Produkt wird mit der Option STANDARD (Einheitsgröße) in Übereinstimmung mit TR / EU-Standards hergestellt.",
+          "• STANDARD Größe -> Breite: 60-61 cm | Länge: 63-64 cm",
+          "Wichtige Hinweise: Unser Standardgrößen-Design ist so geformt, dass es sich verschiedenen Körpertypen anpasst. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.",
+          " ",
+          "■ SWEATPANT (JOGGINGHOSE)",
+          "Unsere Produkte werden in zwei Doppelgrößen als S/M und L/XL in Übereinstimmung mit TR / EU-Standards hergestellt.",
+          "• Größe S/M -> Taille: 36-37 cm | Länge: 100 cm",
+          "• Größe L/XL -> Taille: 40-41 cm | Länge: 100-102 cm",
+          "Wichtige Hinweise: Das Produkt verfügt über elastische Bündchen und einen verstellbaren Kordelzug am Bund; Sie können die Passform ganz einfach für sich optimieren. Es gibt einen durchschnittlichen Unterschied von 2-3 cm zwischen TR / EU-Größen. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten."
         ],
         faq: [
           "Wo werden eure Stücke produziert? — Designt in unserem Studio und in kleinen Chargen mit vertrauten Partnern produziert.",
@@ -231,7 +262,7 @@ const resources = {
   fr: {
     translation: {
       nav: { women: "Femme", men: "Homme", denim: "Denim", newIn: "Nouveautés", search: "Rechercher", cart: "Panier", menu: "Menu" },
-      hero: { women: "Collection Femme", men: "Collection Homme" },
+      hero: { women: "Womenwear", men: "Menwear" }, // Fransızca için de eşitlendi
       page: { comingSoon: "Nouvelle collection bientôt disponible." },
       mens: {
         heroTagline: "La nouvelle collection est arrivée",
@@ -286,16 +317,26 @@ const resources = {
           "Les articles soldés et accessoires ne sont ni repris ni échangés."
         ],
         sizeGuide: [
-          "Nos pièces sont coupées dans un esprit oversize. Entre deux tailles, choisissez la plus petite pour un ajustement près du corps ou la plus grande pour un look ample.",
-          "XS : poitrine 86 cm / taille 68 cm",
-          "S : poitrine 92 cm / taille 74 cm",
-          "M : poitrine 98 cm / taille 80 cm",
-          "L : poitrine 104 cm / taille 86 cm",
-          "XL : poitrine 110 cm / taille 92 cm"
+          "■ T-SHIRT & T-SHIRT SANS MANCHES",
+          "Nos produits sont fabriqués en deux options de double taille S/M et L/XL conformément aux normes TR / UE.",
+          "• Taille S/M -> Largeur: 59-60 cm | Longueur: 62-63 cm",
+          "• Taille L/XL -> Largeur: 63-64 cm | Longueur: 66-67 cm",
+          "Notes importantes: Il y a une différence moyenne de 4-5 cm entre les tailles TR / UE. En raison des mesures manuelles, une variation de ±1-2 cm peut être observée.",
+          " ",
+          "■ SWEATSHIRT",
+          "Notre produit est fabriqué avec l'option STANDARD (Taille Unique) conformément aux normes TR / UE.",
+          "• Taille STANDARD -> Largeur: 60-61 cm | Longueur: 63-64 cm",
+          "Notes importantes: Notre conception de taille standard est moulée pour s'adapter à différents types de corps. En raison des mesures manuelles, une variation de ±1-2 cm peut être observée.",
+          " ",
+          "■ SWEATPANT (PANTALON DE JOGGING)",
+          "Nos produits sont fabriqués en deux options de double taille S/M et L/XL conformément aux normes TR / UE.",
+          "• Taille S/M -> Taille: 36-37 cm | Longueur: 100 cm",
+          "• Taille L/XL -> Taille: 40-41 cm | Longueur: 100-102 cm",
+          "Notes importantes: Le produit est doté de chevilles élastiques et d'un cordon de serrage réglable à la taille; vous pouvez facilement optimiser l'ajustement pour vous-même. Il y a une différence moyenne de 2-3 cm entre les tailles TR / UE. En raison des mesures manuelles, une variation de ±1-2 cm peut être observée."
         ],
         faq: [
           "Où sont fabriquées vos pièces ? — Dessinées dans notre studio et produites en petites séries avec des partenaires de confiance.",
-          "Quels moyens de paiement acceptez-vous ? — Toutes les cartes principales et portefeuilles numériques.",
+          "Quels moyens de paiement acceptez-vous ? — Tous les cartes principales et portefeuilles numériques.",
           "Puis-je modifier ou annuler ma commande ? — Contactez-nous dans les 12 heures suivant la commande.",
           "Réapprovisionnez-vous les articles épuisés ? — Certaines pièces oui, suivez-nous sur Instagram."
         ]
