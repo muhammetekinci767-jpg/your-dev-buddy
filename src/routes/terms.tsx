@@ -72,7 +72,6 @@ function TermsAndPrivacy() {
             className={`pb-4 text-xs tracking-[0.2em] uppercase font-medium transition-all ${
               activeTab === "privacy"
                 ? "border-b-2 border-foreground text-foreground"
-                : "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
