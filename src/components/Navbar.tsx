@@ -16,6 +16,13 @@ const Navbar = () => {
 
   return (
     <>
+      {/* ARKADAKİ SIZINTIYI ENGELLEYEN SABİT BLOK:
+        Navbar ile aynı yükseklikte (h-[65px]), sayfanın en üstüne çakılı kalır.
+        Sayfa aşağı kaysa bile burası hep siyah kalacağı için arkadan hiçbir grilik sızamaz!
+      */}
+      <div className="absolute top-0 left-0 w-full h-[65px] bg-[#0a0a0a] z-40 pointer-events-none" />
+
+      {/* NAVBAR: Senin o orijinal, çok sevdiğin buzlu transparan haliyle kalıyor */}
       <nav className="sticky top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-xl supports-[backdrop-filter]:bg-black/50">
         <div className="flex items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center" aria-label="Home">
