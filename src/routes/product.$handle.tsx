@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Heart, Loader2, Plus, Minus } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -125,9 +125,14 @@ function ProductDetail() {
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center justify-between">
                     <p className="text-sm">Beden:</p>
-                    <button className="text-sm underline underline-offset-4 hover:opacity-60">
+                    {/* YENİ SEKMEDE AÇILAN BEDEN REHBERİ LİNKİ */}
+                    <Link 
+                      to="/size-guide" 
+                      target="_blank" 
+                      className="text-sm underline underline-offset-4 hover:opacity-60"
+                    >
                       Beden Rehberi
-                    </button>
+                    </Link>
                   </div>
                   <div className="flex flex-wrap gap-6">
                     {SIZES.map((s) => (
