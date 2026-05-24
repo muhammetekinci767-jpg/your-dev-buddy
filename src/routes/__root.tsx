@@ -10,6 +10,7 @@ import {
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import CartDrawer from "@/components/CartDrawer";
+import { CookieBanner } from "@/components/CookieBanner";
 import { useCartSync } from "@/hooks/useCartSync";
 import "@/i18n";
 
@@ -125,6 +126,7 @@ function AppShell() {
       <Outlet />
       <CartDrawer />
       <Sonner />
+      <CookieBanner />
     </>
   );
 }
