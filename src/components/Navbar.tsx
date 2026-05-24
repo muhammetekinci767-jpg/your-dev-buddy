@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Search, ShoppingBag } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/logo.jpg";
 import { useCartStore } from "@/stores/cartStore";
 import SearchOverlay from "./SearchOverlay";
 import LanguageSwitcher from "./LanguageSwitcher";
+
+// Lazy load — Three.js ağır, sadece gerektiğinde yüklensin
+const Logo3D = lazy(() => import("./Logo3D"));
 
 const Navbar = () => {
   const items = useCartStore((s) => s.items);
@@ -16,17 +18,22 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ARKADAKİ SIZINTIYI ENGELLEYEN SABİT BLOK:
-        Navbar ile aynı yükseklikte (h-[65px]), sayfanın en üstüne çakılı kalır.
-        Sayfa aşağı kaysa bile burası hep siyah kalacağı için arkadan hiçbir grilik sızamaz!
-      */}
+      {/* Arkadan sızıntıyı engelleyen sabit blok */}
       <div className="absolute top-0 left-0 w-full h-[65px] bg-[#0a0a0a] z-40 pointer-events-none" />
 
-      {/* NAVBAR: Senin o orijinal, çok sevdiğin buzlu transparan haliyle kalıyor */}
+      {/* Navbar */}
       <nav className="sticky top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-xl supports-[backdrop-filter]:bg-black/50">
         <div className="flex items-center justify-between px-4 py-3">
+
+          {/* Logo — 3D model, yüklenene kadar boş alan göster */}
           <Link to="/" className="flex items-center" aria-label="Home">
-            <img src={logo} alt="Logo" className="h-10 w-auto" />
+            <Suspense
+              fallback={
+                <div className="h-10 w-10 rounded-sm bg-white/5 animate-pulse" />
+              }
+            >
+              <Logo3D />
+            </Suspense>
           </Link>
 
           <div className="hidden md:flex items-center gap-8" />
