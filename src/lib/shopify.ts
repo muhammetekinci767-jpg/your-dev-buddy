@@ -32,12 +32,14 @@ export interface ShopifyProduct {
   };
 }
 
-export async function storefrontApiRequest(query: string, variables: any = {}) {
+// language parametresi ve Accept-Language header'ı eklendi
+export async function storefrontApiRequest(query: string, variables: any = {}, language: string = "tr") {
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN,
+      "Accept-Language": language,
     },
     body: JSON.stringify({ query, variables }),
   });
