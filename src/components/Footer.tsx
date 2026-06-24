@@ -24,7 +24,7 @@ const Footer = () => {
         { label: t("footer.links.returns"), to: "/returns" },
         { label: t("footer.links.sizeGuide"), to: "/size-guide" },
         { label: t("footer.links.faq"), to: "/faq" },
-        { label: "Terms & Conditions", to: "/terms" }, // Yeni yasal sayfa linkimiz buraya eklendi
+        { label: t("footer.links.terms"), to: "/terms" },
       ],
     },
   ];
@@ -126,5 +126,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;
