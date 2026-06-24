@@ -7,6 +7,7 @@ import ProductGrid from "@/components/ProductGrid";
 import { useShopifyProduct } from "@/hooks/useShopifyProducts";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
+import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/product/$handle")({
   component: ProductDetail,
@@ -17,6 +18,7 @@ const MENS_HANDLES = ["erkek", "new-in-man", "pants-man", "sleeves-tee", "core-t
 const WOMENS_HANDLES = ["kadin", "new-in-women", "pants-women", "crop-top", "baby-tee"];
 
 function ProductDetail() {
+  const { t } = useTranslation();
   const { handle } = Route.useParams();
   const { product, loading } = useShopifyProduct(handle);
   const addItem = useCartStore((s) => s.addItem);
@@ -33,7 +35,7 @@ function ProductDetail() {
   const isWomens = collectionHandles.some((h) => WOMENS_HANDLES.includes(h));
   const isMens = collectionHandles.some((h) => MENS_HANDLES.includes(h));
   const relatedHandle = isWomens ? "kadin" : isMens ? "erkek" : null;
-  const relatedTitle = isWomens ? "Kadın için diğer ürünler" : "Erkek için diğer ürünler";
+  const relatedTitle = isWomens ? t("product.relatedWomens") : t("product.relatedMens");
   const images = product?.images.edges ?? [];
   const currentImage = images[imgIdx]?.node;
 
@@ -51,7 +53,7 @@ function ProductDetail() {
             <Loader2 className="animate-spin" />
           </div>
         ) : !product ? (
-          <p className="text-center text-muted-foreground py-32">Ürün bulunamadı.</p>
+          <p className="text-center text-muted-foreground py-32">{t("product.notFound")}</p>
         ) : (
           <div className="grid lg:grid-cols-2">
             {/* Image */}
@@ -67,14 +69,14 @@ function ProductDetail() {
                 <>
                   <button
                     onClick={prev}
-                    aria-label="Önceki"
+                    aria-label={t("product.prev")}
                     className="absolute left-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity"
                   >
                     <ChevronLeft size={28} strokeWidth={1.5} />
                   </button>
                   <button
                     onClick={next}
-                    aria-label="Sonraki"
+                    aria-label={t("product.next")}
                     className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity"
                   >
                     <ChevronRight size={28} strokeWidth={1.5} />
@@ -95,14 +97,14 @@ function ProductDetail() {
                       </p>
                     )}
                   </div>
-                  <button aria-label="Favorilere ekle" className="hover:opacity-60 transition-opacity">
+                  <button aria-label={t("product.addToWishlist")} className="hover:opacity-60 transition-opacity">
                     <Heart size={20} strokeWidth={1.5} />
                   </button>
                 </div>
 
                 {hasMultipleVariants && (
                   <div className="space-y-4 pt-2">
-                    <p className="text-sm">Renk:</p>
+                    <p className="text-sm">{t("product.color")}:</p>
                     <div className="flex flex-wrap gap-6">
                       {product.variants.edges.map((v, i) => (
                         <button
@@ -124,14 +126,13 @@ function ProductDetail() {
 
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center justify-between">
-                    <p className="text-sm">Beden:</p>
-                    {/* YENİ SEKMEDE AÇILAN BEDEN REHBERİ LİNKİ */}
-                    <Link 
-                      to="/size-guide" 
-                      target="_blank" 
+                    <p className="text-sm">{t("product.size")}:</p>
+                    <Link
+                      to="/size-guide"
+                      target="_blank"
                       className="text-sm underline underline-offset-4 hover:opacity-60"
                     >
-                      Beden Rehberi
+                      {t("product.sizeGuide")}
                     </Link>
                   </div>
                   <div className="flex flex-wrap gap-6">
@@ -149,7 +150,7 @@ function ProductDetail() {
                       </button>
                     ))}
                   </div>
-                  {size && <p className="text-xs text-muted-foreground pt-1">Stokta var.</p>}
+                  {size && <p className="text-xs text-muted-foreground pt-1">{t("product.inStock")}</p>}
                 </div>
 
                 <button
@@ -173,11 +174,11 @@ function ProductDetail() {
                   {isLoading ? (
                     <Loader2 className="animate-spin" size={16} />
                   ) : !size ? (
-                    "Beden Seç"
+                    t("product.selectSize")
                   ) : variant?.availableForSale ? (
-                    "Sepete Ekle"
+                    t("product.addToCart")
                   ) : (
-                    "Tükendi"
+                    t("product.soldOut")
                   )}
                 </button>
 
@@ -188,7 +189,7 @@ function ProductDetail() {
                       className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
                       aria-expanded={descOpen}
                     >
-                      <span>Açıklama</span>
+                      <span>{t("product.description")}</span>
                       {descOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
                     </button>
                     {descOpen && (
