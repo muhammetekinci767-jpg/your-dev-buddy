@@ -1,5 +1,6 @@
 // translate.mjs - DeepL Free API
 import fs from "fs";
+import fetch from "node-fetch";
 
 const API_KEY = process.env.DEEPL_API_KEY;
 if (!API_KEY) {
@@ -56,33 +57,19 @@ async function translateObject(obj, targetLang) {
 async function main() {
   if (!fs.existsSync(I18N_FILE)) {
     console.error(`❌ Dosya bulunamadı: ${I18N_FILE}`);
-    console.error("   Şu an hangi klasördesin? Kontrol et: pwd");
     process.exit(1);
   }
 
-  console.log(`📖 Okunuyor: ${I18N_FILE}`);
   const fileContent = fs.readFileSync(I18N_FILE, "utf-8");
-
-  // tr bloğunu bul
   const resourcesMatch = fileContent.match(/const resources\s*=\s*(\{[\s\S]+?\});\s*\n(?:const|export)/);
-  if (!resourcesMatch) {
-    console.error("❌ 'const resources' bloğu bulunamadı.");
-    process.exit(1);
-  }
+  if (!resourcesMatch) { console.error("❌ resources bloğu bulunamadı."); process.exit(1); }
 
   let resources;
-  try {
-    resources = Function(`"use strict"; return (${resourcesMatch[1]})`)();
-  } catch (e) {
-    console.error("❌ Parse hatası:", e.message);
-    process.exit(1);
-  }
+  try { resources = Function(`"use strict"; return (${resourcesMatch[1]})`)(); }
+  catch (e) { console.error("❌ Parse hatası:", e.message); process.exit(1); }
 
   const trTranslation = resources?.tr?.translation;
-  if (!trTranslation) {
-    console.error("❌ tr bloğu bulunamadı.");
-    process.exit(1);
-  }
+  if (!trTranslation) { console.error("❌ tr bloğu bulunamadı."); process.exit(1); }
 
   console.log("🇹🇷 Türkçe kaynak bulundu.\n");
   fs.writeFileSync(I18N_FILE + ".backup", fileContent, "utf-8");
@@ -101,7 +88,6 @@ async function main() {
     }
   }
 
-  // Yeni resources objesi oluştur (tr'yi koru, diğerlerini güncelle)
   const newResources = {
     en: { translation: translated.en },
     tr: resources.tr,
@@ -110,7 +96,6 @@ async function main() {
   };
 
   const newResourcesStr = "const resources = " + JSON.stringify(newResources, null, 2) + ";";
-
   const newContent = fileContent.replace(
     /const resources\s*=\s*\{[\s\S]+?\};(\s*\n(?:const|export))/,
     newResourcesStr + "$1"
@@ -121,7 +106,4 @@ async function main() {
   console.log("🎉 Tamamlandı! Bundan sonra sadece tr bloğunu düzenle ve tekrar çalıştır.\n");
 }
 
-main().catch((e) => {
-  console.error("❌ Hata:", e.message);
-  process.exit(1);
-});
+main().catch((e) => { console.error("❌ Hata:", e.message); process.exit(1); });
