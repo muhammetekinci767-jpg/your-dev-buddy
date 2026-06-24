@@ -8,6 +8,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { MENS_CATEGORIES } from "./MensCategoryNav";
 import { WOMENS_CATEGORIES } from "./WomensCategoryNav";
+import Marquee from "./Marquee";
 
 // Lazy load — Three.js ağır, sadece gerektiğinde yüklensin
 const Logo3D = lazy(() => import("./Logo3D"));
@@ -34,57 +35,61 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Arkadan sızıntıyı engelleyen sabit blok */}
-      <div className="absolute top-0 left-0 w-full h-[65px] bg-[#0a0a0a] z-40 pointer-events-none" />
+      <header className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
+        {/* Arkadan sızıntıyı engelleyen, hem marquee hem navbar yüksekliğini otomatik kaplayan siyah blok */}
+        <div className="absolute inset-0 bg-[#0a0a0a] -z-10 pointer-events-none" />
 
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-xl supports-[backdrop-filter]:bg-black/50">
-        <div className="flex items-center justify-between px-4 py-3">
+        {/* Kayan Yazı Bileşenimiz */}
+        <Marquee />
 
-          {/* Logo — 3D model, yüklenene kadar boş alan göster */}
-          <Link to="/" className="flex items-center" aria-label="Home">
-            <Suspense
-              fallback={
-                <div className="h-10 w-10 rounded-sm bg-white/5 animate-pulse" />
-              }
-            >
-              <Logo3D />
-            </Suspense>
-          </Link>
+        {/* Navbar */}
+        <nav className="border-b border-white/10 bg-black/60 backdrop-blur-xl supports-[backdrop-filter]:bg-black/50">
+          <div className="flex items-center justify-between px-4 py-3">
+            {/* Logo */}
+            <Link to="/" className="flex items-center" aria-label="Home">
+              <Suspense
+                fallback={
+                  <div className="h-10 w-10 rounded-sm bg-white/5 animate-pulse" />
+                }
+              >
+                <Logo3D />
+              </Suspense>
+            </Link>
 
-          <div className="hidden md:flex items-center gap-8" />
+            <div className="hidden md:flex items-center gap-8" />
 
-          <div className="flex items-center gap-3 sm:gap-4">
-            <LanguageSwitcher />
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="text-nav-foreground hover:opacity-60 transition-opacity"
-              aria-label={t("nav.search")}
-            >
-              <Search size={18} strokeWidth={1.5} />
-            </button>
-            <button
-              onClick={openCart}
-              className="text-nav-foreground hover:opacity-60 transition-opacity relative"
-              aria-label={t("nav.cart")}
-            >
-              <ShoppingBag size={18} strokeWidth={1.5} />
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[9px] min-w-3.5 h-3.5 px-1 flex items-center justify-center rounded-full">
-                {count}
-              </span>
-            </button>
-            
-            {/* Hamburger Menü Butonu */}
-            <button
-              onClick={() => setMenuOpen(true)}
-              className="text-nav-foreground hover:opacity-60 transition-opacity ml-1"
-              aria-label={t("nav.menu", "Menü")}
-            >
-              <Menu size={20} strokeWidth={1.5} />
-            </button>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <LanguageSwitcher />
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="text-nav-foreground hover:opacity-60 transition-opacity"
+                aria-label={t("nav.search")}
+              >
+                <Search size={18} strokeWidth={1.5} />
+              </button>
+              <button
+                onClick={openCart}
+                className="text-nav-foreground hover:opacity-60 transition-opacity relative"
+                aria-label={t("nav.cart")}
+              >
+                <ShoppingBag size={18} strokeWidth={1.5} />
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[9px] min-w-3.5 h-3.5 px-1 flex items-center justify-center rounded-full">
+                  {count}
+                </span>
+              </button>
+              
+              {/* Hamburger Menü Butonu */}
+              <button
+                onClick={() => setMenuOpen(true)}
+                className="text-nav-foreground hover:opacity-60 transition-opacity ml-1"
+                aria-label={t("nav.menu", "Menü")}
+              >
+                <Menu size={20} strokeWidth={1.5} />
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
 
@@ -113,7 +118,6 @@ const Navbar = () => {
                 )}
               </button>
               
-              {/* Kadın Alt Kategorileri */}
               <div 
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   openAccordion === "women" ? "max-h-96 mt-5 opacity-100" : "max-h-0 opacity-0"
@@ -155,7 +159,6 @@ const Navbar = () => {
                 )}
               </button>
               
-              {/* Erkek Alt Kategorileri */}
               <div 
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   openAccordion === "men" ? "max-h-96 mt-5 opacity-100" : "max-h-0 opacity-0"
