@@ -26,7 +26,11 @@ function ProductDetail() {
   const [variantIdx, setVariantIdx] = useState(0);
   const [size, setSize] = useState<string | null>(null);
   const [imgIdx, setImgIdx] = useState(0);
+  
+  // Akordiyonlar için State'ler
   const [descOpen, setDescOpen] = useState(false);
+  const [deliveryOpen, setDeliveryOpen] = useState(false);
+  const [returnsOpen, setReturnsOpen] = useState(false);
 
   const variant = product?.variants.edges[variantIdx]?.node;
   const productNode = useMemo(() => (product ? { node: product } : null), [product]);
@@ -182,23 +186,96 @@ function ProductDetail() {
                   )}
                 </button>
 
-                {product.description && (
-                  <div className="pt-2 border-t border-border">
+                <div className="pt-2">
+                  {/* Açıklama Akordiyonu */}
+                  {product.description && (
+                    <div className="border-t border-border">
+                      <button
+                        onClick={() => setDescOpen((o) => !o)}
+                        className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
+                        aria-expanded={descOpen}
+                      >
+                        <span>{t("product.description")}</span>
+                        {descOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
+                      </button>
+                      {descOpen && (
+                        <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed pb-6">
+                          {product.description}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Teslimat Akordiyonu */}
+                  <div className="border-t border-border">
                     <button
-                      onClick={() => setDescOpen((o) => !o)}
+                      onClick={() => setDeliveryOpen((o) => !o)}
                       className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
-                      aria-expanded={descOpen}
+                      aria-expanded={deliveryOpen}
                     >
-                      <span>{t("product.description")}</span>
-                      {descOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
+                      <span>{t("footer.links.delivery")}</span>
+                      {deliveryOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
                     </button>
-                    {descOpen && (
-                      <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed pb-6">
-                        {product.description}
-                      </p>
+                    {deliveryOpen && (
+                      <div className="text-xs text-muted-foreground leading-relaxed pb-6 space-y-4">
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("delivery.domestic.heading")}</strong>
+                          <p>{t("delivery.domestic.p1")}</p>
+                          <p>{t("delivery.domestic.p2")}</p>
+                        </div>
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("delivery.international.heading")}</strong>
+                          <p>{t("delivery.international.p1")}</p>
+                          <p>{t("delivery.international.p2")}</p>
+                        </div>
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("delivery.customs.heading")}</strong>
+                          <p>{t("delivery.customs.p1")}</p>
+                        </div>
+                      </div>
                     )}
                   </div>
-                )}
+
+                  {/* İade Akordiyonu */}
+                  <div className="border-t border-border">
+                    <button
+                      onClick={() => setReturnsOpen((o) => !o)}
+                      className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
+                      aria-expanded={returnsOpen}
+                    >
+                      <span>{t("footer.links.returns")}</span>
+                      {returnsOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
+                    </button>
+                    {returnsOpen && (
+                      <div className="text-xs text-muted-foreground leading-relaxed pb-6 space-y-4">
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("returns.window.heading")}</strong>
+                          <p><span className="font-semibold text-foreground">{t("returns.window.tr")}</span> {t("returns.window.trText")}</p>
+                          <p><span className="font-semibold text-foreground">{t("returns.window.intl")}</span> {t("returns.window.intlText")}</p>
+                        </div>
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("returns.conditions.heading")}</strong>
+                          <p>{t("returns.conditions.p1")}</p>
+                        </div>
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("returns.shipping.heading")}</strong>
+                          <p>{t("returns.shipping.p1")}</p>
+                        </div>
+                        <div>
+                          <strong className="block text-foreground mb-1">{t("returns.contact.heading")}</strong>
+                          <p>
+                            {t("returns.contact.p1")}{" "}
+                            <a href={`mailto:${t("returns.contact.email")}`} className="underline text-foreground">
+                              {t("returns.contact.email")}
+                            </a>{" "}
+                            {t("returns.contact.p2")}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
