@@ -35,61 +35,56 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
-        {/* Arkadan sızıntıyı engelleyen, hem marquee hem navbar yüksekliğini otomatik kaplayan siyah blok */}
-        <div className="absolute inset-0 bg-[#0a0a0a] -z-10 pointer-events-none" />
+      {/* Kayan Yazı Bileşenimiz - Sabit (sticky) DEĞİL, aşağı inince kaybolur */}
+      <Marquee />
 
-        {/* Kayan Yazı Bileşenimiz */}
-        <Marquee />
+      {/* Sadece Navbar (Menü) sticky, aşağı kaydırınca ekranda yapışık kalır */}
+      <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0a]/90 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0a0a0a]/60">
+        <div className="flex items-center justify-between px-4 py-3">
+          {/* Logo */}
+          <Link to="/" className="flex items-center" aria-label="Home">
+            <Suspense
+              fallback={
+                <div className="h-10 w-10 rounded-sm bg-white/5 animate-pulse" />
+              }
+            >
+              <Logo3D />
+            </Suspense>
+          </Link>
 
-        {/* Navbar */}
-        <nav className="border-b border-white/10 bg-black/60 backdrop-blur-xl supports-[backdrop-filter]:bg-black/50">
-          <div className="flex items-center justify-between px-4 py-3">
-            {/* Logo */}
-            <Link to="/" className="flex items-center" aria-label="Home">
-              <Suspense
-                fallback={
-                  <div className="h-10 w-10 rounded-sm bg-white/5 animate-pulse" />
-                }
-              >
-                <Logo3D />
-              </Suspense>
-            </Link>
+          <div className="hidden md:flex items-center gap-8" />
 
-            <div className="hidden md:flex items-center gap-8" />
-
-            <div className="flex items-center gap-3 sm:gap-4">
-              <LanguageSwitcher />
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="text-nav-foreground hover:opacity-60 transition-opacity"
-                aria-label={t("nav.search")}
-              >
-                <Search size={18} strokeWidth={1.5} />
-              </button>
-              <button
-                onClick={openCart}
-                className="text-nav-foreground hover:opacity-60 transition-opacity relative"
-                aria-label={t("nav.cart")}
-              >
-                <ShoppingBag size={18} strokeWidth={1.5} />
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[9px] min-w-3.5 h-3.5 px-1 flex items-center justify-center rounded-full">
-                  {count}
-                </span>
-              </button>
-              
-              {/* Hamburger Menü Butonu */}
-              <button
-                onClick={() => setMenuOpen(true)}
-                className="text-nav-foreground hover:opacity-60 transition-opacity ml-1"
-                aria-label={t("nav.menu", "Menü")}
-              >
-                <Menu size={20} strokeWidth={1.5} />
-              </button>
-            </div>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="text-nav-foreground hover:opacity-60 transition-opacity"
+              aria-label={t("nav.search")}
+            >
+              <Search size={18} strokeWidth={1.5} />
+            </button>
+            <button
+              onClick={openCart}
+              className="text-nav-foreground hover:opacity-60 transition-opacity relative"
+              aria-label={t("nav.cart")}
+            >
+              <ShoppingBag size={18} strokeWidth={1.5} />
+              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[9px] min-w-3.5 h-3.5 px-1 flex items-center justify-center rounded-full">
+                {count}
+              </span>
+            </button>
+            
+            {/* Hamburger Menü Butonu */}
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="text-nav-foreground hover:opacity-60 transition-opacity ml-1"
+              aria-label={t("nav.menu", "Menü")}
+            >
+              <Menu size={20} strokeWidth={1.5} />
+            </button>
           </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
 
