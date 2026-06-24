@@ -1,37 +1,41 @@
-// translate.mjs - DeepL Free API ile otomatik çeviri
+// translate.mjs - DeepL Free API
 import fs from "fs";
 
 const API_KEY = process.env.DEEPL_API_KEY;
 if (!API_KEY) {
   console.error("❌ DEEPL_API_KEY set edilmemiş.");
-  console.error("   export DEEPL_API_KEY=key-buraya");
   process.exit(1);
 }
 
 const I18N_FILE = "./src/i18n.ts";
 const DEEPL_URL = "https://api-free.deepl.com/v2/translate";
-
 const TARGET_LANGS = { en: "EN", de: "DE", fr: "FR" };
 
 async function translateText(text, targetLang) {
   if (!text || text.trim() === "") return text;
 
-  const params = new URLSearchParams();
-  params.append("auth_key", API_KEY);
-  params.append("text", text);
-  params.append("source_lang", "TR");
-  params.append("target_lang", targetLang);
-
   const res = await fetch(DEEPL_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: params.toString(),
+    headers: {
+      "Authorization": `DeepL-Auth-Key ${API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      text: [text],
+      source_lang: "TR",
+      target_lang: targetLang,
+    }),
   });
 
-  const data = await res.json();
-  if (!data.translations) {
-    throw new Error(JSON.stringify(data));
+  const raw = await res.text();
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch(e) {
+    throw new Error("DeepL cevabı parse edilemedi: " + raw.slice(0, 100));
   }
+
+  if (!data.translations) throw new Error(JSON.stringify(data));
   return data.translations[0].text;
 }
 
@@ -42,9 +46,7 @@ async function translateObject(obj, targetLang) {
   }
   if (Array.isArray(obj)) {
     const result = [];
-    for (const item of obj) {
-      result.push(await translateObject(item, targetLang));
-    }
+    for (const item of obj) result.push(await translateObject(item, targetLang));
     return result;
   }
   if (typeof obj === "object" && obj !== null) {
@@ -64,75 +66,54 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`📖 Okunuyor: ${I18N_FILE}`);
   const fileContent = fs.readFileSync(I18N_FILE, "utf-8");
-
   const resourcesMatch = fileContent.match(/const resources\s*=\s*(\{[\s\S]+?\});\s*\n(?:const|export)/);
-  if (!resourcesMatch) {
-    console.error("❌ 'const resources' bloğu bulunamadı.");
-    process.exit(1);
-  }
+  if (!resourcesMatch) { console.error("❌ resources bloğu bulunamadı."); process.exit(1); }
 
   let resources;
-  try {
-    resources = Function(`"use strict"; return (${resourcesMatch[1]})`)();
-  } catch (e) {
-    console.error("❌ Parse hatası:", e.message);
-    process.exit(1);
-  }
+  try { resources = Function(`"use strict"; return (${resourcesMatch[1]})`)(); }
+  catch (e) { console.error("❌ Parse hatası:", e.message); process.exit(1); }
 
   const trTranslation = resources?.tr?.translation;
-  if (!trTranslation) {
-    console.error("❌ Türkçe (tr) bloğu bulunamadı.");
-    process.exit(1);
-  }
+  if (!trTranslation) { console.error("❌ tr bloğu bulunamadı."); process.exit(1); }
 
   console.log("🇹🇷 Türkçe kaynak bulundu.\n");
-
   fs.writeFileSync(I18N_FILE + ".backup", fileContent, "utf-8");
-  console.log(`💾 Yedek: ${I18N_FILE}.backup\n`);
+  console.log(`💾 Yedek alındı\n`);
 
-  let newContent = fileContent;
+  // Tüm dilleri çevir, sonra dosyayı tek seferde yeniden oluştur
+  const translated = {};
   const langNames = { en: "İngilizce", de: "Almanca", fr: "Fransızca" };
 
   for (const [code, deeplCode] of Object.entries(TARGET_LANGS)) {
     process.stdout.write(`🌐 ${langNames[code]} çeviriliyor `);
     try {
-      const translated = await translateObject(trTranslation, deeplCode);
+      translated[code] = await translateObject(trTranslation, deeplCode);
       console.log(" ✅");
-
-      // Dosyadaki dil bloğunu bul ve değiştir
-      const translatedJson = JSON.stringify({ translation: translated }, null, 2);
-      const escapedCode = code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const langRegex = new RegExp(
-        `(  ${escapedCode}:\\s*\\{)([\\s\\S]*?)(\\n  [},])`,
-        "m"
-      );
-
-      if (langRegex.test(newContent)) {
-        newContent = newContent.replace(langRegex, (match, open, middle, close) => {
-          const inner = translatedJson
-            .split("\n")
-            .slice(1, -1)
-            .map(l => "  " + l)
-            .join("\n");
-          return `${open}\n${inner}\n  }${close.includes(",") ? "," : ""}`;
-        });
-        console.log(`   📝 ${code} güncellendi`);
-      } else {
-        console.warn(`   ⚠️  ${code} bloğu bulunamadı`);
-      }
     } catch (e) {
-      console.log(` ❌`);
-      console.error(`   Hata: ${e.message}`);
+      console.log(` ❌\n   Hata: ${e.message}`);
+      translated[code] = resources[code]?.translation || {}; // eskiyi koru
     }
   }
 
+  // resources objesini yeniden oluştur
+  const newResources = {
+    ...resources,
+    en: { translation: translated.en },
+    de: { translation: translated.de },
+    fr: { translation: translated.fr },
+  };
+
+  // Dosyadaki resources bloğunu yenisiyle değiştir
+  const newResourcesStr = "const resources = " + JSON.stringify(newResources, null, 2);
+  const newContent = fileContent.replace(
+    /const resources\s*=\s*\{[\s\S]+?\};\s*\n(?=const|export)/,
+    newResourcesStr + ";\n\n"
+  );
+
   fs.writeFileSync(I18N_FILE, newContent, "utf-8");
-  console.log(`\n✨ Tamamlandı! Bundan sonra sadece tr bloğunu düzenle ve tekrar çalıştır.\n`);
+  console.log(`\n✨ src/i18n.ts güncellendi!`);
+  console.log("🎉 Tamamlandı! Bundan sonra sadece tr bloğunu düzenle ve tekrar çalıştır.\n");
 }
 
-main().catch((e) => {
-  console.error("❌ Hata:", e.message);
-  process.exit(1);
-});
+main().catch((e) => { console.error("❌ Hata:", e.message); process.exit(1); });
