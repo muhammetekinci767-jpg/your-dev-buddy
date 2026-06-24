@@ -19,13 +19,12 @@ const Footer = () => {
       key: "customerService",
       title: t("footer.customerService"),
       links: [
-        { label: t("footer.links.about"), to: "/about" }, // YENİ EKLENEN LİNK
+        { label: t("footer.links.about"), to: "/about" },
         { label: t("footer.links.contact"), to: "/contact" },
         { label: t("footer.links.delivery"), to: "/delivery" },
         { label: t("footer.links.returns"), to: "/returns" },
         { label: t("footer.links.sizeGuide"), to: "/size-guide" },
         { label: t("footer.links.faq"), to: "/faq" },
-        { label: t("footer.links.terms"), to: "/terms" },
       ],
     },
   ];
@@ -119,10 +118,25 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-footer-border px-4 md:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-footer-muted text-[10px] tracking-wide">
-          {t("footer.rights")}
-        </p>
+      {/* BURASI GÜNCELLENDİ */}
+      <div className="border-t border-footer-border px-4 md:px-8 py-6 flex flex-col md:flex-row items-center gap-3 md:gap-4">
+        <div className="flex items-center gap-3 text-footer-muted text-[11px] tracking-wide">
+          <Link to="/" className="hover:text-footer-foreground transition-colors font-medium">
+            © 2026 Svamp Studios
+          </Link>
+          <span className="hidden md:inline">|</span>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-4 text-footer-muted text-[11px] tracking-wide">
+          <Link to="/terms" className="hover:text-footer-foreground transition-colors">
+            {t("terms.tabs.terms")}
+          </Link>
+          <Link to="/privacy" className="hover:text-footer-foreground transition-colors">
+            {t("terms.tabs.privacy")}
+          </Link>
+          <Link to="/cookie-policy" className="hover:text-footer-foreground transition-colors">
+            {t("terms.tabs.cookies")}
+          </Link>
+        </div>
       </div>
     </footer>
   );
