@@ -165,7 +165,7 @@ function ProductDetail() {
                       quantity: 1,
                       selectedOptions: [
                         ...(variant.selectedOptions || []),
-                        { name: "Beden", value: size },
+                        { name: t("product.size"), value: size },
                       ],
                     });
                   }}
