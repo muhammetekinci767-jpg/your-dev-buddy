@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   storefrontApiRequest,
   PRODUCTS_QUERY,
@@ -8,6 +9,7 @@ import {
 } from "@/lib/shopify";
 
 export function useShopifyCollection(handles: string[], first = 40) {
+  const { i18n } = useTranslation();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const key = handles.join("|");
@@ -18,7 +20,7 @@ export function useShopifyCollection(handles: string[], first = 40) {
     (async () => {
       for (const handle of handles) {
         try {
-          const data = await storefrontApiRequest(COLLECTION_PRODUCTS_QUERY, { handle, first });
+          const data = await storefrontApiRequest(COLLECTION_PRODUCTS_QUERY, { handle, first }, i18n.language);
           const edges = data?.data?.collection?.products?.edges;
           if (edges && edges.length > 0) {
             if (!cancelled) {
@@ -37,13 +39,13 @@ export function useShopifyCollection(handles: string[], first = 40) {
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, first]);
+  }, [key, first, i18n.language]);
 
   return { products, loading };
 }
 
 export function useShopifyProducts(query?: string, first = 20, enabled = true) {
+  const { i18n } = useTranslation();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(enabled);
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +57,7 @@ export function useShopifyProducts(query?: string, first = 20, enabled = true) {
     }
     let cancelled = false;
     setLoading(true);
-    storefrontApiRequest(PRODUCTS_QUERY, { first, query: query ?? null })
+    storefrontApiRequest(PRODUCTS_QUERY, { first, query: query ?? null }, i18n.language)
       .then((data) => {
         if (cancelled) return;
         setProducts(data?.data?.products?.edges ?? []);
@@ -65,12 +67,13 @@ export function useShopifyProducts(query?: string, first = 20, enabled = true) {
     return () => {
       cancelled = true;
     };
-  }, [query, first, enabled]);
+  }, [query, first, enabled, i18n.language]);
 
   return { products, loading, error };
 }
 
 export function useShopifyProduct(handle: string | undefined) {
+  const { i18n } = useTranslation();
   const [product, setProduct] = useState<ShopifyProduct["node"] | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -78,7 +81,7 @@ export function useShopifyProduct(handle: string | undefined) {
     if (!handle) return;
     let cancelled = false;
     setLoading(true);
-    storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle })
+    storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle }, i18n.language)
       .then((data) => {
         if (cancelled) return;
         setProduct(data?.data?.product ?? null);
@@ -87,7 +90,7 @@ export function useShopifyProduct(handle: string | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [handle]);
+  }, [handle, i18n.language]);
 
   return { product, loading };
 }
