@@ -1,6 +1,7 @@
 const AnnouncementBar = () => {
-  const text = "FREE SHIPPING ON ORDERS OVER $150. TAXES & DUTIES INCLUDED";
-  
+  const { t } = useTranslation();
+  const text = t("announcement");
+
   return (
     <div className="bg-announcement overflow-hidden py-2">
       <div className="scrolling-text flex whitespace-nowrap">
@@ -16,5 +17,3 @@ const AnnouncementBar = () => {
     </div>
   );
 };
-
-export default AnnouncementBar;
