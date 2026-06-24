@@ -19,6 +19,7 @@ const Footer = () => {
       key: "customerService",
       title: t("footer.customerService"),
       links: [
+        { label: t("footer.links.about"), to: "/about" }, // YENİ EKLENEN LİNK
         { label: t("footer.links.contact"), to: "/contact" },
         { label: t("footer.links.delivery"), to: "/delivery" },
         { label: t("footer.links.returns"), to: "/returns" },
