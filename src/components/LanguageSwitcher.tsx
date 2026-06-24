@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
+import { useRouter } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +18,7 @@ const LANGS = [
 
 const LanguageSwitcher = ({ variant = "nav" }: { variant?: "nav" | "footer" }) => {
   const { i18n, t } = useTranslation();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const current = LANGS.find((l) => l.code === i18n.language.split("-")[0]) ?? LANGS[0];
@@ -41,7 +43,10 @@ const LanguageSwitcher = ({ variant = "nav" }: { variant?: "nav" | "footer" }) =
         {LANGS.map((l) => (
           <DropdownMenuItem
             key={l.code}
-            onClick={() => i18n.changeLanguage(l.code)}
+            onClick={() => {
+              i18n.changeLanguage(l.code);
+              router.invalidate(); // Sayfayı yeni dille tekrar çizdirir
+            }}
             className={l.code === current.code ? "font-semibold" : ""}
           >
             {l.label}
