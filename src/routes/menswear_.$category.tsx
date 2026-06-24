@@ -38,10 +38,7 @@ function MenswearCategory() {
           </h1>
         </div>
 
-        <ProductGrid 
-  collectionHandles={["erkek"]} 
-  title={t("mens.relatedMens")} 
-/>
+        <ProductGrid key={cat.key} collectionHandles={cat.handles} title={String(title)} />
       </main>
       <Footer />
     </div>
