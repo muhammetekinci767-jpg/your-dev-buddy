@@ -89,3 +89,5 @@ const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: Produ
     </section>
   );
 };
+
+export default ProductGrid;
