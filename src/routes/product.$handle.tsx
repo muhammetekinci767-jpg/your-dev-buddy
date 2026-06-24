@@ -27,7 +27,6 @@ function ProductDetail() {
   const [size, setSize] = useState<string | null>(null);
   const [imgIdx, setImgIdx] = useState(0);
   
-  // Akordiyonlar için State'ler
   const [descOpen, setDescOpen] = useState(false);
   const [deliveryOpen, setDeliveryOpen] = useState(false);
   const [returnsOpen, setReturnsOpen] = useState(false);
@@ -35,11 +34,17 @@ function ProductDetail() {
   const variant = product?.variants.edges[variantIdx]?.node;
   const productNode = useMemo(() => (product ? { node: product } : null), [product]);
 
+  // Koleksiyon kontrolü
   const collectionHandles: string[] = ((product as unknown as { collections?: { edges: { node: { handle: string } }[] } } | null)?.collections?.edges ?? []).map((e) => e.node.handle);
-  const isWomens = collectionHandles.some((h) => WOMENS_HANDLES.includes(h));
-  const isMens = collectionHandles.some((h) => MENS_HANDLES.includes(h));
-  const relatedHandle = isWomens ? "kadin" : isMens ? "erkek" : null;
-  const relatedTitle = isWomens ? t("product.relatedWomens") : t("product.relatedMens");
+  
+  // BURASI GÜNCELLENDİ: Kullanıcının nerede olduğunu ürün etiketlerinden bağımsız kesinleştirelim
+  const isMensProduct = collectionHandles.some((h) => MENS_HANDLES.includes(h));
+  const isWomensProduct = collectionHandles.some((h) => WOMENS_HANDLES.includes(h));
+  
+  // Öncelik: Eğer ürün erkek koleksiyonundaysa "erkek", değilse "kadin" (varsayılan)
+  const relatedHandle = isMensProduct ? "erkek" : "kadin";
+  const relatedTitle = isMensProduct ? t("mens.relatedMens") : t("womens.relatedWomens");
+
   const images = product?.images.edges ?? [];
   const currentImage = images[imgIdx]?.node;
 
@@ -60,7 +65,6 @@ function ProductDetail() {
           <p className="text-center text-muted-foreground py-32">{t("product.notFound")}</p>
         ) : (
           <div className="grid lg:grid-cols-2">
-            {/* Image */}
             <div className="relative bg-secondary aspect-square lg:aspect-auto lg:min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
               {currentImage && (
                 <img
@@ -71,35 +75,22 @@ function ProductDetail() {
               )}
               {images.length > 1 && (
                 <>
-                  <button
-                    onClick={prev}
-                    aria-label={t("product.prev")}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity"
-                  >
+                  <button onClick={prev} aria-label={t("product.prev")} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity">
                     <ChevronLeft size={28} strokeWidth={1.5} />
                   </button>
-                  <button
-                    onClick={next}
-                    aria-label={t("product.next")}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity"
-                  >
+                  <button onClick={next} aria-label={t("product.next")} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:opacity-60 transition-opacity">
                     <ChevronRight size={28} strokeWidth={1.5} />
                   </button>
                 </>
               )}
             </div>
 
-            {/* Info */}
             <div className="flex items-center justify-center px-6 lg:px-16 py-12 lg:py-0">
               <div className="w-full max-w-md space-y-8">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-3">
                     <h1 className="text-base font-normal tracking-wide">{product.title}</h1>
-                    {variant && (
-                      <p className="text-base">
-                        {formatPrice(variant.price.amount, variant.price.currencyCode)}
-                      </p>
-                    )}
+                    {variant && <p className="text-base">{formatPrice(variant.price.amount, variant.price.currencyCode)}</p>}
                   </div>
                   <button aria-label={t("product.addToWishlist")} className="hover:opacity-60 transition-opacity">
                     <Heart size={20} strokeWidth={1.5} />
@@ -115,11 +106,7 @@ function ProductDetail() {
                           key={v.node.id}
                           onClick={() => setVariantIdx(i)}
                           disabled={!v.node.availableForSale}
-                          className={`text-sm pb-1 transition-all ${
-                            i === variantIdx
-                              ? "border-b border-foreground font-medium"
-                              : "border-b border-transparent hover:border-foreground/40"
-                          } ${!v.node.availableForSale ? "line-through opacity-40" : ""}`}
+                          className={`text-sm pb-1 transition-all ${i === variantIdx ? "border-b border-foreground font-medium" : "border-b border-transparent hover:border-foreground/40"} ${!v.node.availableForSale ? "line-through opacity-40" : ""}`}
                         >
                           {v.node.title}
                         </button>
@@ -131,24 +118,14 @@ function ProductDetail() {
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center justify-between">
                     <p className="text-sm">{t("product.size")}:</p>
-                    <Link
-                      to="/size-guide"
-                      target="_blank"
-                      className="text-sm underline underline-offset-4 hover:opacity-60"
-                    >
-                      {t("product.sizeGuide")}
-                    </Link>
+                    <Link to="/size-guide" target="_blank" className="text-sm underline underline-offset-4 hover:opacity-60">{t("product.sizeGuide")}</Link>
                   </div>
                   <div className="flex flex-wrap gap-6">
                     {SIZES.map((s) => (
                       <button
                         key={s}
                         onClick={() => setSize(s)}
-                        className={`text-sm pb-1 transition-all ${
-                          size === s
-                            ? "border-b border-foreground font-medium"
-                            : "border-b border-transparent hover:border-foreground/40"
-                        }`}
+                        className={`text-sm pb-1 transition-all ${size === s ? "border-b border-foreground font-medium" : "border-b border-transparent hover:border-foreground/40"}`}
                       >
                         {s}
                       </button>
@@ -167,115 +144,54 @@ function ProductDetail() {
                       variantTitle: `${variant.title} • ${size}`,
                       price: variant.price,
                       quantity: 1,
-                      selectedOptions: [
-                        ...(variant.selectedOptions || []),
-                        { name: t("product.size"), value: size },
-                      ],
+                      selectedOptions: [...(variant.selectedOptions || []), { name: t("product.size"), value: size }],
                     });
                   }}
                   className="w-full bg-foreground text-background py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50 flex items-center justify-center"
                 >
-                  {isLoading ? (
-                    <Loader2 className="animate-spin" size={16} />
-                  ) : !size ? (
-                    t("product.selectSize")
-                  ) : variant?.availableForSale ? (
-                    t("product.addToCart")
-                  ) : (
-                    t("product.soldOut")
-                  )}
+                  {isLoading ? <Loader2 className="animate-spin" size={16} /> : !size ? t("product.selectSize") : variant?.availableForSale ? t("product.addToCart") : t("product.soldOut")}
                 </button>
 
                 <div className="pt-2">
-                  {/* Açıklama Akordiyonu */}
                   {product.description && (
                     <div className="border-t border-border">
-                      <button
-                        onClick={() => setDescOpen((o) => !o)}
-                        className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
-                        aria-expanded={descOpen}
-                      >
+                      <button onClick={() => setDescOpen((o) => !o)} className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity" aria-expanded={descOpen}>
                         <span>{t("product.description")}</span>
                         {descOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
                       </button>
-                      {descOpen && (
-                        <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed pb-6">
-                          {product.description}
-                        </p>
-                      )}
+                      {descOpen && <p className="text-xs text-muted-foreground whitespace-pre-line leading-relaxed pb-6">{product.description}</p>}
                     </div>
                   )}
 
-                  {/* Teslimat Akordiyonu */}
                   <div className="border-t border-border">
-                    <button
-                      onClick={() => setDeliveryOpen((o) => !o)}
-                      className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
-                      aria-expanded={deliveryOpen}
-                    >
+                    <button onClick={() => setDeliveryOpen((o) => !o)} className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity" aria-expanded={deliveryOpen}>
                       <span>{t("footer.links.delivery")}</span>
                       {deliveryOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
                     </button>
                     {deliveryOpen && (
                       <div className="text-xs text-muted-foreground leading-relaxed pb-6 space-y-4">
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("delivery.domestic.heading")}</strong>
-                          <p>{t("delivery.domestic.p1")}</p>
-                          <p>{t("delivery.domestic.p2")}</p>
-                        </div>
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("delivery.international.heading")}</strong>
-                          <p>{t("delivery.international.p1")}</p>
-                          <p>{t("delivery.international.p2")}</p>
-                        </div>
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("delivery.customs.heading")}</strong>
-                          <p>{t("delivery.customs.p1")}</p>
-                        </div>
+                        <div><strong className="block text-foreground mb-1">{t("delivery.domestic.heading")}</strong><p>{t("delivery.domestic.p1")}</p><p>{t("delivery.domestic.p2")}</p></div>
+                        <div><strong className="block text-foreground mb-1">{t("delivery.international.heading")}</strong><p>{t("delivery.international.p1")}</p><p>{t("delivery.international.p2")}</p></div>
+                        <div><strong className="block text-foreground mb-1">{t("delivery.customs.heading")}</strong><p>{t("delivery.customs.p1")}</p></div>
                       </div>
                     )}
                   </div>
 
-                  {/* İade Akordiyonu */}
                   <div className="border-t border-border">
-                    <button
-                      onClick={() => setReturnsOpen((o) => !o)}
-                      className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
-                      aria-expanded={returnsOpen}
-                    >
+                    <button onClick={() => setReturnsOpen((o) => !o)} className="w-full flex items-center justify-between py-4 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity" aria-expanded={returnsOpen}>
                       <span>{t("footer.links.returns")}</span>
                       {returnsOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
                     </button>
                     {returnsOpen && (
                       <div className="text-xs text-muted-foreground leading-relaxed pb-6 space-y-4">
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("returns.window.heading")}</strong>
-                          <p><span className="font-semibold text-foreground">{t("returns.window.tr")}</span> {t("returns.window.trText")}</p>
-                          <p><span className="font-semibold text-foreground">{t("returns.window.intl")}</span> {t("returns.window.intlText")}</p>
-                        </div>
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("returns.conditions.heading")}</strong>
-                          <p>{t("returns.conditions.p1")}</p>
-                        </div>
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("returns.shipping.heading")}</strong>
-                          <p>{t("returns.shipping.p1")}</p>
-                        </div>
-                        <div>
-                          <strong className="block text-foreground mb-1">{t("returns.contact.heading")}</strong>
-                          <p>
-                            {t("returns.contact.p1")}{" "}
-                            <a href={`mailto:${t("returns.contact.email")}`} className="underline text-foreground">
-                              {t("returns.contact.email")}
-                            </a>{" "}
-                            {t("returns.contact.p2")}
-                          </p>
-                        </div>
+                        <div><strong className="block text-foreground mb-1">{t("returns.window.heading")}</strong><p><span className="font-semibold text-foreground">{t("returns.window.tr")}</span> {t("returns.window.trText")}</p><p><span className="font-semibold text-foreground">{t("returns.window.intl")}</span> {t("returns.window.intlText")}</p></div>
+                        <div><strong className="block text-foreground mb-1">{t("returns.conditions.heading")}</strong><p>{t("returns.conditions.p1")}</p></div>
+                        <div><strong className="block text-foreground mb-1">{t("returns.shipping.heading")}</strong><p>{t("returns.shipping.p1")}</p></div>
+                        <div><strong className="block text-foreground mb-1">{t("returns.contact.heading")}</strong><p>{t("returns.contact.p1")} <a href={`mailto:${t("returns.contact.email")}`} className="underline text-foreground">{t("returns.contact.email")}</a> {t("returns.contact.p2")}</p></div>
                       </div>
                     )}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
