@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 type CategoryKey = 'tshirt' | 'sweatshirt' | 'sweatpant' | 'sleeveless';
 
@@ -10,22 +11,23 @@ interface SizeRows {
   inch: string[][];
 }
 
+// Senin verdiğin ölçülerle güncellenmiş değerler (En/Bel = 1. index, Boy = 2. index)
 const SIZE_ROWS: Record<CategoryKey, SizeRows> = {
   tshirt: {
-    cm: [["S/M", "59-60 cm", "62-63 cm"], ["L/XL", "63-64 cm", "66-67 cm"]],
-    inch: [["S/M", "23.4\"", "24.6\""], ["L/XL", "25.0\"", "26.2\""]]
+    cm: [["S/M", "60-61 cm", "64-65 cm"], ["L/XL", "63-64 cm", "68-69 cm"]],
+    inch: [["S/M", "23.6-24.0\"", "25.2-25.6\""], ["L/XL", "24.8-25.2\"", "26.8-27.2\""]]
   },
   sleeveless: {
-    cm: [["S/M", "59-60 cm", "62-63 cm"], ["L/XL", "63-64 cm", "66-67 cm"]],
-    inch: [["S/M", "23.4\"", "24.6\""], ["L/XL", "25.0\"", "26.2\""]]
+    cm: [["S/M", "60-61 cm", "64-65 cm"], ["L/XL", "63-64 cm", "68-69 cm"]],
+    inch: [["S/M", "23.6-24.0\"", "25.2-25.6\""], ["L/XL", "24.8-25.2\"", "26.8-27.2\""]]
   },
   sweatshirt: {
-    cm: [["STANDART", "60-61 cm", "63-64 cm"]],
-    inch: [["STANDART", "23.8\"", "25.0\""]]
+    cm: [["STANDART", "63-64 cm", "64-65 cm"]],
+    inch: [["STANDART", "24.8-25.2\"", "25.2-25.6\""]]
   },
   sweatpant: {
-    cm: [["S/M", "36-37 cm", "100 cm"], ["L/XL", "40-41 cm", "100-102 cm"]],
-    inch: [["S/M", "14.3\"", "39.3\""], ["L/XL", "16.0\"", "39.7\""]]
+    cm: [["S/M", "42 cm", "96 cm"], ["L/XL", "46 cm", "102 cm"]],
+    inch: [["S/M", "16.5\"", "37.8\""], ["L/XL", "18.1\"", "40.2\""]]
   }
 };
 
@@ -40,14 +42,12 @@ const SizeGuideComponent = () => {
   const currentRows = SIZE_ROWS[activeCategory];
   const headers = t(`sizeGuide.${activeCategory}.headers`, { returnObjects: true }) as string[];
   const notes = t(`sizeGuide.${activeCategory}.notes`);
-  const title = t(`sizeGuide.${activeCategory}.title`);
 
   return (
-    <div className="w-full text-black font-sans min-h-screen bg-white">
+    <div className="w-full text-black font-sans min-h-screen flex flex-col bg-white">
       <Navbar />
 
-      <div className="max-w-4xl mx-auto px-4 py-24">
-
+      <main className="flex-1 max-w-4xl mx-auto px-4 py-24 w-full">
         {/* Gender tabs */}
         <div className="flex justify-center border-b border-gray-200 mb-8">
           {(['women', 'men', 'unisex'] as const).map((gender) => (
@@ -131,8 +131,10 @@ const SizeGuideComponent = () => {
           <span className="font-bold block mb-1.5 text-black uppercase tracking-wider text-[10px]">{t('sizeGuide.importantNotes')}</span>
           {notes}
         </div>
+      </main>
 
-      </div>
+      {/* Footer Bileşeni Eklendi */}
+      <Footer />
     </div>
   );
 };
