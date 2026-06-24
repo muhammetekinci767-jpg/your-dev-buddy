@@ -118,7 +118,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* BURASI GÜNCELLENDİ */}
       <div className="border-t border-footer-border px-4 md:px-8 py-6 flex flex-col md:flex-row items-center gap-3 md:gap-4">
         <div className="flex items-center gap-3 text-footer-muted text-[11px] tracking-wide">
           <Link to="/" className="hover:text-footer-foreground transition-colors font-medium">
@@ -127,13 +126,14 @@ const Footer = () => {
           <span className="hidden md:inline">|</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4 text-footer-muted text-[11px] tracking-wide">
+          {/* Hepsi /terms sayfasına yönlendiriyor */}
           <Link to="/terms" className="hover:text-footer-foreground transition-colors">
             {t("terms.tabs.terms")}
           </Link>
-          <Link to="/privacy" className="hover:text-footer-foreground transition-colors">
+          <Link to="/terms" className="hover:text-footer-foreground transition-colors">
             {t("terms.tabs.privacy")}
           </Link>
-          <Link to="/cookie-policy" className="hover:text-footer-foreground transition-colors">
+          <Link to="/terms" className="hover:text-footer-foreground transition-colors">
             {t("terms.tabs.cookies")}
           </Link>
         </div>
