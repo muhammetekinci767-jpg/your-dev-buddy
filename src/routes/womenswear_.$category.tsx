@@ -38,7 +38,10 @@ function WomenswearCategory() {
           </h1>
         </div>
 
-        <ProductGrid key={cat.key} collectionHandles={cat.handles} title={String(title)} />
+        <ProductGrid 
+  collectionHandles={["kadin"]} 
+  title={t("womens.relatedWomens")} 
+/>
       </main>
       <Footer />
     </div>
