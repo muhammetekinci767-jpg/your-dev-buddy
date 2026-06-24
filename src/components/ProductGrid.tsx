@@ -3,6 +3,7 @@ import { Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { useShopifyProducts, useShopifyCollection } from "@/hooks/useShopifyProducts";
 import { formatPrice } from "@/lib/shopify";
+import { useTranslation } from "react-i18next";
 
 interface ProductGridProps {
   query?: string;
@@ -11,6 +12,7 @@ interface ProductGridProps {
 }
 
 const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: ProductGridProps) => {
+  const { t } = useTranslation();
   const byQuery = useShopifyProducts(query, 20, !collectionHandles);
   const byCollection = useShopifyCollection(collectionHandles ?? []);
   const products = collectionHandles ? byCollection.products : byQuery.products;
@@ -29,7 +31,7 @@ const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: Produ
           <Loader2 className="animate-spin" />
         </div>
       ) : products.length === 0 ? (
-        <p className="text-center text-muted-foreground text-sm">No products found</p>
+        <p className="text-center text-muted-foreground text-sm">{t("product.noProductsFound")}</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-8">
           {products.map((p) => {
@@ -65,7 +67,7 @@ const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: Produ
                     disabled={!variant || isLoading}
                     className="absolute bottom-0 left-0 right-0 bg-foreground text-background text-[10px] tracking-[0.2em] uppercase py-3 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-50"
                   >
-                    Sepete Ekle
+                    {t("product.addToCart")}
                   </button>
                 </Link>
                 <Link to="/product/$handle" params={{ handle: p.node.handle }}>
@@ -87,5 +89,3 @@ const ProductGrid = ({ query, collectionHandles, title = "Trending Now" }: Produ
     </section>
   );
 };
-
-export default ProductGrid;
