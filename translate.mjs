@@ -1,8 +1,6 @@
 // translate.mjs - DeepL Free API
 import fs from "fs";
 
-const { default: fetch } = await import("node-fetch");
-
 const API_KEY = process.env.DEEPL_API_KEY;
 if (!API_KEY) {
   console.error("❌ DEEPL_API_KEY set edilmemiş.");
