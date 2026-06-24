@@ -5,7 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   en: {
     translation: {
-      nav: { women: "Women", men: "Men", denim: "Denim", newIn: "New In", search: "Search", cart: "Cart", menu: "Menu" },
+      nav: { women: "Women", men: "Men", denim: "Denim", newIn: "New In", search: "Search", cart: "Cart", menu: "Menu", unisex: "Unisex" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "New collection coming soon." },
       announcement: "FREE SHIPPING ON ORDERS OVER $150. TAXES & DUTIES INCLUDED",
@@ -56,8 +56,15 @@ const resources = {
         submit: "Submit",
         rights: "© 2025 All rights reserved.",
         links: {
-          contact: "Contact Us", delivery: "Delivery", returns: "Returns", sizeGuide: "Size Guide", faq: "FAQ", terms: "Terms & Conditions"
+          about: "About Us", contact: "Contact Us", delivery: "Delivery", returns: "Returns", sizeGuide: "Size Guide", faq: "FAQ", terms: "Terms & Conditions"
         }
+      },
+      about: {
+        title: "About Us",
+        p1: "Svamp is a clothing brand fueled by the aesthetics of darkness and the uncompromising stance of underground culture. For us, clothing is not just a necessity; it is one of the most powerful ways to express identity, transformation, and belonging.",
+        p2: "At the core of our brand lies the idea of rebirth. Powerful symbols like the bat, night, and blood represent experiences, change, and the strength born from darkness. Every collection is designed as a wearable manifesto that tells this story in its own language.",
+        p3: "Extra-baggy fits, boxy silhouettes, and bold details are made for individuals who do not fit into molds and pave their own paths. Svamp exists not for those who want to be seen, but for those who make their presence felt.",
+        p4: "Instead of following trends, we are creating our own universe. Because Svamp is not just a brand; it is the common language of those who find their place in the night."
       },
       info: {
         contact: [
@@ -83,18 +90,7 @@ const resources = {
           "Our products are produced in two double size options as S/M and L/XL in accordance with TR / EU standards.",
           "• S/M Size -> Width: 59-60 cm | Length: 62-63 cm",
           "• L/XL Size -> Width: 63-64 cm | Length: 66-67 cm",
-          "Important Notes: There is an average of 4-5 cm difference between TR / EU sizes. Due to manual measurements, a variation of ±1-2 cm may be observed.",
-          " ",
-          "■ SWEATSHIRT",
-          "Our product is produced with STANDARD (One Size) option in accordance with TR / EU standards.",
-          "• STANDARD Size -> Width: 60-61 cm | Length: 63-64 cm",
-          "Important Notes: Our standard size design is molded to fit different body types. Due to manual measurements, a variation of ±1-2 cm may be observed.",
-          " ",
-          "■ SWEATPANT",
-          "Our products are produced in two double size options as S/M and L/XL in accordance with TR / EU standards.",
-          "• S/M Size -> Waist: 36-37 cm | Length: 100 cm",
-          "• L/XL Size -> Waist: 40-41 cm | Length: 100-102 cm",
-          "Important Notes: The product features elastic cuffs and an adjustable drawcord at the waist; you can easily optimize the fit for yourself. There is an average of 2-3 cm difference between TR / EU sizes. Due to manual measurements, a variation of ±1-2 cm may be observed."
+          "Important Notes: There is an average of 4-5 cm difference between TR / EU sizes. Due to manual measurements, a variation of ±1-2 cm may be observed."
         ],
         faq: [
           "Where are your pieces made? — Designed in our studio and produced in small batches with trusted partners.",
@@ -150,7 +146,7 @@ const resources = {
   },
   tr: {
     translation: {
-      nav: { women: "Kadın", men: "Erkek", denim: "Denim", newIn: "Yeni Gelenler", search: "Ara", cart: "Sepet", menu: "Menü" },
+      nav: { women: "Kadın", men: "Erkek", denim: "Denim", newIn: "Yeni Gelenler", search: "Ara", cart: "Sepet", menu: "Menü", unisex: "Unisex" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Yeni koleksiyon yakında burada." },
       announcement: "150$ ÜZERİ SİPARİŞLERDE ÜCRETSİZ KARGO. VERGİ VE GÜMRÜK DAHİL",
@@ -201,8 +197,15 @@ const resources = {
         submit: "Gönder",
         rights: "© 2025 Tüm hakları saklıdır.",
         links: {
-          contact: "İletişim", delivery: "Teslimat", returns: "İadeler", sizeGuide: "Beden Rehberi", faq: "SSS", terms: "Şartlar & Koşullar"
+          about: "Biz Kimiz?", contact: "İletişim", delivery: "Teslimat", returns: "İadeler", sizeGuide: "Beden Rehberi", faq: "SSS", terms: "Şartlar & Koşullar"
         }
+      },
+      about: {
+        title: "Biz Kimiz?",
+        p1: "Svamp, karanlığın estetiğinden ve yeraltı kültürünün tavizsiz duruşundan beslenen bir giyim markasıdır. Bizim için giyim yalnızca bir ihtiyaç değil; kimliği, dönüşümü ve aidiyeti ifade etmenin en güçlü yollarından biridir.",
+        p2: "Markamızın temelinde yeniden doğuş fikri yer alır. Yarasa, gece ve kan gibi güçlü semboller; yaşanmışlıkları, değişimi ve karanlığın içinden doğan gücü temsil eder. Her koleksiyon, bu hikâyeyi kendi diliyle anlatan giyilebilir bir manifesto olarak tasarlanır.",
+        p3: "Extra-baggy kesimler, boxy silüetler ve cesur detaylar; kalıplara sığmayan, kendi yolunu çizen bireyler için üretilir. Svamp, görünmek isteyenler için değil, varlığını hissettirenler için vardır.",
+        p4: "Trendlerin peşinden gitmek yerine kendi evrenimizi yaratıyoruz. Çünkü Svamp bir marka değil; gecenin içinde kendine ait bir yer bulanların ortak dili."
       },
       info: {
         contact: [
@@ -225,27 +228,11 @@ const resources = {
         ],
         sizeGuide: [
           "■ T-SHIRT & SLEEVELESS TEE (SIFIR KOL)",
-          "Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
-          "• S/M Beden -> En: 59-60 cm | Boy: 62-63 cm",
-          "• L/XL Beden -> En: 63-64 cm | Boy: 66-67 cm",
-          "Önemli Notlar: TR / EU beden ölçüleri arasında ortalama 4-5 cm fark bulunmaktadır. El ile yapılan manuel ölçümler nedeniyle, belirtilen ölçülerde ±1–2 cm değişiklik görülebilir.",
-          " ",
-          "■ SWEATSHIRT",
-          "Ürünümüz TR / EU standartlarına uygun olarak STANDART (Tek Beden) seçeneğiyle üretilmiştir.",
-          "• STANDART Beden -> En: 60-61 cm | Boy: 63-64 cm",
-          "Önemli Notlar: Standart beden tasarımımız farklı vücut tiplerine uyum sağlayacak şekilde kalıplanmıştır. El ile yapılan manuel ölçümler nedeniyle, belirtilen ölçülerde ±1–2 cm değişiklik görülebilir.",
-          " ",
-          "■ SWEATPANT (EŞOFMAN)",
-          "Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir.",
-          "• S/M Beden -> Bel: 36-37 cm | Boy: 100 cm",
-          "• L/XL Beden -> Bel: 40-41 cm | Boy: 100-102 cm",
-          "Önemli Notlar: Ürünün paçasında lastik, belinde ise ayarlanabilir kordon (ip) bulunmaktadır; kalıbı kendinize göre rahatça optimize edebilirsiniz. TR / EU beden ölçüleri arasında ortalama 2-3 cm fark bulunmaktadır. El ile yapılan manuel ölçümler nedeniyle, belirtilen ölçülerde ±1–2 cm değişiklik görülebilir."
+          "Ürünümüz TR / EU standartlarına uygun olarak S/M ve L/XL olmak üzere iki çiftli beden seçeneğiyle üretilmiştir."
         ],
         faq: [
           "Ürünlerinizi nerede üretiliyor? — Stüdyomuzda tasarlanır, güvendiğimiz iş ortaklarıyla küçük partiler halinde üretilir.",
-          "Hangi ödeme yöntemlerini kabul ediyorsunuz? — Tüm büyük kredi kartları ve dijital cüzdanlar.",
-          "Siparişimi değiştirebilir veya iptal edebilir miyim? — Sipariş verdikten sonraki 12 saat içinde bize ulaşın.",
-          "Tükenen ürünler tekrar gelir mi? — Bazı parçalar tekrar gelir, güncellemeler için Instagram'dan bizi takip edin."
+          "Hangi ödeme yöntemlerini kabul ediyorsunuz? — Tüm büyük kredi kartları ve dijital cüzdanlar."
         ]
       },
       sizeGuide: {
@@ -254,10 +241,10 @@ const resources = {
         women: "Kadın",
         men: "Erkek",
         unisex: "Unisex",
-        tshirt: { title: "T-Shirt", notes: "Ürünümüz TR / EU standartlarına uygun olarak üretilmiştir. TR / EU beden ölçüleri arasında ortalama 4-5 cm fark bulunmaktadır. Manuel ölçümler nedeniyle ±1–2 cm değişiklik görülebilir.", headers: ["Beden (Size)", "En (Width)", "Boy (Length)"] },
-        sleeveless: { title: "Sleeveless Tee", notes: "Sıfır kol ürünümüz TR / EU standartlarına uygun olarak üretilmiştir. TR / EU beden ölçüleri arasında ortalama 4-5 cm fark bulunmaktadır. Manuel ölçümler nedeniyle ±1–2 cm değişiklik görülebilir.", headers: ["Beden (Size)", "En (Width)", "Boy (Length)"] },
-        sweatshirt: { title: "Sweatshirt", notes: "Ürünümüz STANDART (Tek Beden) seçeneğiyle üretilmiştir. Farklı vücut tiplerine uyum sağlayacak şekilde kalıplanmıştır. Manuel ölçümler nedeniyle ±1–2 cm değişiklik görülebilir.", headers: ["Beden (Size)", "En (Width)", "Boy (Length)"] },
-        sweatpant: { title: "Sweatpant", notes: "Ürünün paçasında lastik, belinde ise ayarlanabilir kordon (ip) bulunmaktadır. TR / EU beden ölçüleri arasında ortalama 2-3 cm fark bulunmaktadır. Manuel ölçümler nedeniyle ±1–2 cm değişiklik görülebilir.", headers: ["Beden (Size)", "Bel (Waist)", "Boy (Length)"] }
+        tshirt: { title: "T-Shirt", notes: "Ürünümüz TR / EU standartlarına uygun olarak üretilmiştir.", headers: ["Beden (Size)", "En (Width)", "Boy (Length)"] },
+        sleeveless: { title: "Sleeveless Tee", notes: "Sıfır kol ürünümüz TR / EU standartlarına uygun olarak üretilmiştir.", headers: ["Beden (Size)", "En (Width)", "Boy (Length)"] },
+        sweatshirt: { title: "Sweatshirt", notes: "Ürünümüz STANDART (Tek Beden) seçeneğiyle üretilmiştir.", headers: ["Beden (Size)", "En (Width)", "Boy (Length)"] },
+        sweatpant: { title: "Sweatpant", notes: "Ürünün paçasında lastik, belinde ise ayarlanabilir kordon (ip) bulunmaktadır.", headers: ["Beden (Size)", "Bel (Waist)", "Boy (Length)"] }
       },
       delivery: {
         title: "Teslimat Bilgileri",
@@ -279,26 +266,26 @@ const resources = {
         lastUpdated: "Son Güncelleme: 20 Mayıs 2026"
       },
       cookie: {
-        banner: "Web sitemizde deneyiminizi geliştirmek için çerezler kullanıyoruz. Detaylı bilgi için",
+        banner: "Web sitemizde deneyiminizi geliştirmek için çerezler kullanıyoruz.",
         policyLink: "çerez politikamızı",
         settings: "Ayarlar",
         rejectAll: "Reddet",
         acceptAll: "Kabul Et",
         settingsTitle: "Çerez Ayarları",
         savePreferences: "Tercihleri Kaydet",
-        necessary: { label: "Zorunlu", desc: "Site temel işlevleri için gereklidir. Devre dışı bırakılamaz." },
+        necessary: { label: "Zorunlu", desc: "Site temel işlevleri için gereklidir." },
         analytics: { label: "Analitik", desc: "Site performansını ölçmek için Google Analytics kullanılır." },
-        marketing: { label: "Pazarlama", desc: "Meta Pixel ve TikTok Pixel ile hedefli reklamlar için kullanılır." }
+        marketing: { label: "Pazarlama", desc: "Meta Pixel ve TikTok Pixel ile reklamlar için kullanılır." }
       },
       lang: { label: "Dil" }
     },
   },
   de: {
     translation: {
-      nav: { women: "Damen", men: "Herren", denim: "Denim", newIn: "Neuheiten", search: "Suche", cart: "Warenkorb", menu: "Menü" },
+      nav: { women: "Damen", men: "Herren", denim: "Denim", newIn: "Neuheiten", search: "Suche", cart: "Warenkorb", menu: "Menü", unisex: "Unisex" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Neue Kollektion bald verfügbar." },
-      announcement: "KOSTENLOSER VERSAND AB $150 BESTELLWERT. STEUERN & ZÖLLE INKLUSIVE",
+      announcement: "KOSTENLOSER VERSAND AB $150 BESTELLWERT.",
       mens: {
         heroTagline: "Die neue Kollektion ist da",
         heroCta: "Kollektion entdecken",
@@ -315,7 +302,7 @@ const resources = {
         heroTagline: "Die neue Kollektion ist da",
         heroCta: "Kollektion entdecken",
         editorialTitle: "Mühelose Weiblichkeit",
-        editorialText: "Weiche Schnitte, fließende Silhouetten und feine Details, die sich mit dir bewegen."
+        editorialText: "Weiche Schnitte, fließende Silhouetten und feine Details."
       },
       search: { placeholder: "Suchen...", suggestions: "Vorschläge", close: "Schließen" },
       cart: { title: "Warenkorb", empty: "Dein Warenkorb ist leer.", total: "Gesamt", checkout: "Mit Shopify bezahlen", remove: "Entfernen", increase: "Erhöhen", decrease: "Verringern" },
@@ -341,56 +328,37 @@ const resources = {
         brand: "Marke",
         followUs: "Folge uns",
         stayPosted: "Bleib informiert",
-        newsletter: "Melde dich für unseren Newsletter an: Neuigkeiten, Angebote und Updates.",
+        newsletter: "Melde dich für unseren Newsletter an.",
         email: "E-Mail",
         submit: "Absenden",
         rights: "© 2025 Alle Rechte vorbehalten.",
         links: {
-          contact: "Kontakt", delivery: "Lieferung", returns: "Rücksendungen", sizeGuide: "Größentabelle", faq: "FAQ", terms: "AGB & Konditionen"
+          about: "Über Uns", contact: "Kontakt", delivery: "Lieferung", returns: "Rücksendungen", sizeGuide: "Größentabelle", faq: "FAQ", terms: "AGB & Konditionen"
         }
+      },
+      about: {
+        title: "Über Uns",
+        p1: "Svamp ist eine Bekleidungsmarke, die von der Ästhetik der Dunkelheit und der kompromisslosen Haltung der Underground-Kultur angetrieben wird. Für uns ist Kleidung nicht nur ein Bedürfnis, sondern einer der stärksten Wege, Identität, Transformation und Zugehörigkeit auszudrücken.",
+        p2: "Im Kern unserer Marke steht die Idee der Wiedergeburt. Starke Symbole wie die Fledermaus, die Nacht und das Blut stehen für Erfahrungen, Veränderung und die Kraft, die aus der Dunkelheit entsteht. Jede Kollektion wird als tragbares Manifest entworfen, das diese Geschichte in ihrer eigenen Sprache erzählt.",
+        p3: "Extra-baggy Schnitte, boxy Silhouetten und mutige Details werden für Individuen gemacht, die in keine Schublade passen und ihren eigenen Weg gehen. Svamp existiert nicht für diejenigen, die gesehen werden wollen, sondern für diejenigen, die ihre Präsenz spürbar machen.",
+        p4: "Anstatt Trends zu folgen, erschaffen wir unser eigenes Universum. Denn Svamp ist nicht nur eine Marke; es ist die gemeinsame Sprache derer, die ihren Platz in der Nacht finden."
       },
       info: {
         contact: [
-          "Wir freuen uns, von dir zu hören. Bei Fragen zu Bestellungen, Produkten oder Kooperationen melde dich gerne.",
-          "E-Mail: svampstudios.com@svampstudios.com",
-          "Instagram: @svamp.studios",
-          "Wir antworten in der Regel innerhalb von 1–2 Werktagen."
+          "Wir freuen uns, von dir zu hören.",
+          "E-Mail: svampstudios.com@svampstudios.com"
         ],
         delivery: [
-          "Wir versenden weltweit aus unserem Studio. Bestellungen werden innerhalb von 1–3 Werktagen bearbeitet.",
-          "Standardversand: 3–7 Werktage.",
-          "Expressversand: 1–3 Werktage.",
-          "Versandkosten werden an der Kasse je nach Zielort berechnet."
+          "Wir versenden weltweit aus unserem Studio."
         ],
         returns: [
-          "Rücksendungen sind innerhalb von 14 Tagen nach Erhalt möglich, sofern die Artikel ungetragen und mit Etikett sind.",
-          "Für eine Rücksendung kontaktiere uns unter svampstudios.com@svampstudios.com mit deiner Bestellnummer.",
-          "Rückerstattungen erfolgen innerhalb von 7 Werktagen nach Eingang der Rücksendung.",
-          "Sale-Artikel und Accessoires sind vom Umtausch ausgeschlossen."
+          "Rücksendungen sind innerhalb von 14 Tagen möglich."
         ],
         sizeGuide: [
-          "■ T-SHIRT & ÄRMELLOSES T-SHIRT",
-          "Unsere Produkte werden in zwei Doppelgrößen als S/M und L/XL in Übereinstimmung mit TR / EU-Standards hergestellt.",
-          "• Größe S/M -> Breite: 59-60 cm | Länge: 62-63 cm",
-          "• Größe L/XL -> Breite: 63-64 cm | Länge: 66-67 cm",
-          "Wichtige Hinweise: Es gibt einen durchschnittlichen Unterschied von 4-5 cm zwischen TR / EU-Größen. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.",
-          " ",
-          "■ SWEATSHIRT",
-          "Unser Produkt wird mit der Option STANDARD (Einheitsgröße) in Übereinstimmung mit TR / EU-Standards hergestellt.",
-          "• STANDARD Größe -> Breite: 60-61 cm | Länge: 63-64 cm",
-          "Wichtige Hinweise: Unser Standardgrößen-Design ist so geformt, dass es sich verschiedenen Körpertypen anpasst. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.",
-          " ",
-          "■ SWEATPANT (JOGGINGHOSE)",
-          "Unsere Produkte werden in zwei Doppelgrößen als S/M und L/XL in Übereinstimmung mit TR / EU-Standards hergestellt.",
-          "• Größe S/M -> Taille: 36-37 cm | Länge: 100 cm",
-          "• Größe L/XL -> Taille: 40-41 cm | Länge: 100-102 cm",
-          "Wichtige Hinweise: Das Produkt verfügt über elastische Bündchen und einen verstellbaren Kordelzug am Bund. Es gibt einen durchschnittlichen Unterschied von 2-3 cm zwischen TR / EU-Größen. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten."
+          "■ T-SHIRT & ÄRMELLOSES T-SHIRT"
         ],
         faq: [
-          "Wo werden eure Stücke produziert? — Designt in unserem Studio und in kleinen Chargen mit vertrauten Partnern produziert.",
-          "Welche Zahlungsmethoden akzeptiert ihr? — Alle gängigen Kreditkarten und digitalen Wallets.",
-          "Kann ich meine Bestellung ändern oder stornieren? — Melde dich innerhalb von 12 Stunden nach der Bestellung.",
-          "Werden ausverkaufte Artikel nachproduziert? — Einige Stücke ja, folge uns auf Instagram für Updates."
+          "Wo werden eure Stücke produziert? — Designt in unserem Studio."
         ]
       },
       sizeGuide: {
@@ -399,51 +367,51 @@ const resources = {
         women: "Damen",
         men: "Herren",
         unisex: "Unisex",
-        tshirt: { title: "T-Shirt", notes: "Unser Produkt wird in Übereinstimmung mit TR / EU-Standards hergestellt. Es gibt einen durchschnittlichen Unterschied von 4-5 cm. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.", headers: ["Größe", "Breite", "Länge"] },
-        sleeveless: { title: "Ärmelloses Tee", notes: "Unser ärmelloses Produkt wird in Übereinstimmung mit TR / EU-Standards hergestellt. Es gibt einen durchschnittlichen Unterschied von 4-5 cm. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.", headers: ["Größe", "Breite", "Länge"] },
-        sweatshirt: { title: "Sweatshirt", notes: "Unser Produkt wird mit der STANDARD (Einheitsgröße) Option hergestellt. Es ist so geformt, dass es sich verschiedenen Körpertypen anpasst. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.", headers: ["Größe", "Breite", "Länge"] },
-        sweatpant: { title: "Sweatpant", notes: "Das Produkt verfügt über elastische Bündchen und einen verstellbaren Kordelzug. Es gibt einen durchschnittlichen Unterschied von 2-3 cm zwischen TR / EU-Größen. Aufgrund manueller Messungen kann eine Abweichung von ±1-2 cm auftreten.", headers: ["Größe", "Taille", "Länge"] }
+        tshirt: { title: "T-Shirt", notes: "Unser Produkt wird in Übereinstimmung mit TR / EU-Standards hergestellt.", headers: ["Größe", "Breite", "Länge"] },
+        sleeveless: { title: "Ärmelloses Tee", notes: "Unser ärmelloses Produkt wird in Übereinstimmung mit TR / EU-Standards hergestellt.", headers: ["Größe", "Breite", "Länge"] },
+        sweatshirt: { title: "Sweatshirt", notes: "Unser Produkt wird mit der STANDARD Option hergestellt.", headers: ["Größe", "Breite", "Länge"] },
+        sweatpant: { title: "Sweatpant", notes: "Das Produkt verfügt über elastische Bündchen.", headers: ["Größe", "Taille", "Länge"] }
       },
       delivery: {
         title: "Lieferinformationen",
         subtitle: "Über Bestellabwicklung und Lieferzeiten",
-        domestic: { heading: "1. Inlandsversand (Türkiye)", p1: "Die geschätzte Lieferzeit für alle Bestellungen innerhalb der Türkiye beträgt 5–7 Werktage.", p2: "Sobald deine Bestellung versandt wurde, erhältst du eine Sendungsverfolgungsnummer per SMS und E-Mail." },
-        international: { heading: "2. Internationaler Versand", p1: "Die geschätzten Lieferzeiten für internationale Bestellungen können je nach Zielland, Zollabfertigungsverfahren und lokalen Transportunternehmen variieren.", p2: "SVAMP haftet nicht für Verzögerungen durch Zollprüfungen, internationale Versandunterbrechungen oder höhere Gewalt." },
-        customs: { heading: "3. Zoll & Einfuhrsteuern", p1: "Bei internationalen Sendungen liegen Zollgebühren, Einfuhrsteuern oder zusätzliche Abfertigungsgebühren im Zielland in der alleinigen Verantwortung des Kunden." }
+        domestic: { heading: "1. Inlandsversand (Türkiye)", p1: "Die geschätzte Lieferzeit beträgt 5–7 Werktage.", p2: "Trackingnummer kommt per SMS." },
+        international: { heading: "2. Internationaler Versand", p1: "Die Lieferzeiten variieren.", p2: "SVAMP haftet nicht für Zoll-Verzögerungen." },
+        customs: { heading: "3. Zoll & Einfuhrsteuern", p1: "Kunde zahlt Steuern." }
       },
       returns: {
-        title: "Rücksendungen & Erstattungen",
-        subtitle: "Informationen zu unserer Rückgaberichtlinie",
-        window: { heading: "1. Rückgabefrist", tr: "Türkiye-Bestellungen:", trText: "Rücksendungen können innerhalb von 14 Tagen nach Lieferung beantragt werden.", intl: "Internationale Bestellungen:", intlText: "Rücksendungen können innerhalb von 30 Tagen nach Lieferung beantragt werden." },
-        conditions: { heading: "2. Rückgabebedingungen", p1: "Zurückgesandte Artikel müssen unbenutzt, ungetragen, ungewaschen und in ihrem Originalzustand mit allen Etiketten und Originalverpackungen sein. SVAMP behält sich das Recht vor, Rücksendungen abzulehnen." },
-        shipping: { heading: "3. Versand- & Zollgebühren", p1: "Die Versandkosten für Rücksendungen trägt der Kunde, es sei denn, der Artikel ist fehlerhaft oder falsch. Für internationale Rücksendungen sind Versandkosten, Zollgebühren und Einfuhrsteuern nicht erstattungsfähig." },
-        contact: { heading: "4. Kontakt", p1: "Um eine Rücksendung einzuleiten, kontaktiere uns bitte unter", email: "svamp.info@gmail.com", p2: "mit deiner Bestellnummer." }
+        title: "Rücksendungen",
+        subtitle: "Rückgaberichtlinie",
+        window: { heading: "1. Rückgabefrist", tr: "Türkiye:", trText: "14 Tage.", intl: "Internationale:", intlText: "30 Tage." },
+        conditions: { heading: "2. Bedingungen", p1: "Ungetragen und original verpackt." },
+        shipping: { heading: "3. Versand", p1: "Kunde zahlt Rückversand." },
+        contact: { heading: "4. Kontakt", p1: "Bitte kontaktiere uns:", email: "svamp.info@gmail.com", p2: "mit Bestellnummer." }
       },
       terms: {
         tabs: { terms: "AGB", privacy: "Datenschutz", cookies: "Cookie-Richtlinie" },
         lastUpdated: "Zuletzt aktualisiert: 20. Mai 2026"
       },
       cookie: {
-        banner: "Wir verwenden Cookies, um dein Erlebnis auf unserer Website zu verbessern. Weitere Informationen findest du in unserer",
+        banner: "Wir verwenden Cookies.",
         policyLink: "Cookie-Richtlinie",
         settings: "Einstellungen",
         rejectAll: "Alle ablehnen",
         acceptAll: "Alle akzeptieren",
         settingsTitle: "Cookie-Einstellungen",
-        savePreferences: "Einstellungen speichern",
-        necessary: { label: "Notwendig", desc: "Für grundlegende Website-Funktionen erforderlich. Kann nicht deaktiviert werden." },
-        analytics: { label: "Analytisch", desc: "Zur Messung der Website-Leistung via Google Analytics." },
-        marketing: { label: "Marketing", desc: "Für zielgerichtete Werbung via Meta Pixel und TikTok Pixel." }
+        savePreferences: "Speichern",
+        necessary: { label: "Notwendig", desc: "Erforderlich." },
+        analytics: { label: "Analytisch", desc: "Leistungsmessung." },
+        marketing: { label: "Marketing", desc: "Werbung." }
       },
       lang: { label: "Sprache" }
     },
   },
   fr: {
     translation: {
-      nav: { women: "Femme", men: "Homme", denim: "Denim", newIn: "Nouveautés", search: "Rechercher", cart: "Panier", menu: "Menu" },
+      nav: { women: "Femme", men: "Homme", denim: "Denim", newIn: "Nouveautés", search: "Rechercher", cart: "Panier", menu: "Menu", unisex: "Unisexe" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Nouvelle collection bientôt disponible." },
-      announcement: "LIVRAISON GRATUITE DÈS $150 D'ACHAT. TAXES ET DROITS INCLUS",
+      announcement: "LIVRAISON GRATUITE DÈS $150 D'ACHAT.",
       mens: {
         heroTagline: "La nouvelle collection est arrivée",
         heroCta: "Découvrir la collection",
@@ -453,14 +421,14 @@ const resources = {
         newArrivals: "Nouveautés",
         viewAll: "Tout voir",
         editorialTitle: "Conçu pour la nuit",
-        editorialText: "Silhouettes audacieuses, textures brutes et pièces fortes à vivre.",
+        editorialText: "Silhouettes audacieuses.",
         editorialCta: "Explorer"
       },
       womens: {
         heroTagline: "La nouvelle collection est arrivée",
         heroCta: "Découvrir la collection",
         editorialTitle: "Féminité sans effort",
-        editorialText: "Coupes douces, silhouettes fluides et détails raffinés qui bougent avec vous."
+        editorialText: "Coupes douces."
       },
       search: { placeholder: "Rechercher...", suggestions: "Suggestions", close: "Fermer" },
       cart: { title: "Panier", empty: "Votre panier est vide.", total: "Total", checkout: "Payer avec Shopify", remove: "Supprimer", increase: "Augmenter", decrease: "Diminuer" },
@@ -486,56 +454,37 @@ const resources = {
         brand: "Marque",
         followUs: "Suivez-nous",
         stayPosted: "Restez informé",
-        newsletter: "Inscrivez-vous à notre newsletter pour les actualités, offres et mises à jour.",
+        newsletter: "Inscrivez-vous à notre newsletter.",
         email: "E-mail",
         submit: "Envoyer",
         rights: "© 2025 Tous droits réservés.",
         links: {
-          contact: "Contact", delivery: "Livraison", returns: "Retours", sizeGuide: "Guide des tailles", faq: "FAQ", terms: "CGV & Conditions"
+          about: "Qui Sommes-Nous ?", contact: "Contact", delivery: "Livraison", returns: "Retours", sizeGuide: "Guide des tailles", faq: "FAQ", terms: "CGV & Conditions"
         }
+      },
+      about: {
+        title: "Qui Sommes-Nous ?",
+        p1: "Svamp est une marque de vêtements nourrie par l'esthétique de l'obscurité et la position intransigeante de la culture underground. Pour nous, le vêtement n'est pas seulement un besoin ; c'est l'un des moyens les plus puissants d'exprimer son identité, sa transformation et son appartenance.",
+        p2: "Au cœur de notre marque se trouve l'idée de renaissance. Des symboles forts comme la chauve-souris, la nuit et le sang représentent les expériences, le changement et la force née des ténèbres. Chaque collection est conçue comme un manifeste portable qui raconte cette histoire dans sa propre langue.",
+        p3: "Les coupes extra-baggy, les silhouettes boxy et les détails audacieux sont créés pour les individus qui ne rentrent pas dans les moules et tracent leur propre voie. Svamp n'existe pas pour ceux qui veulent être vus, mais pour ceux qui font sentir leur présence.",
+        p4: "Au lieu de suivre les tendances, nous créons notre propre univers. Parce que Svamp n'est pas seulement une marque ; c'est le langage commun de ceux qui trouvent leur place dans la nuit."
       },
       info: {
         contact: [
-          "Nous serions ravis de vous lire. Pour toute question sur les commandes, les produits ou les collaborations, contactez notre équipe.",
-          "E-mail : svampstudios.com@svampstudios.com",
-          "Instagram : @svamp.studios",
-          "Nous répondons sous 1 à 2 jours ouvrés."
+          "Nous serions ravis de vous lire.",
+          "E-mail : svampstudios.com@svampstudios.com"
         ],
         delivery: [
-          "Nous expédions dans le monde entier depuis notre studio. Les commandes sont traitées sous 1 à 3 jours ouvrés.",
-          "Livraison standard : 3 à 7 jours ouvrés.",
-          "Livraison express : 1 à 3 jours ouvrés.",
-          "Les frais de port sont calculés au paiement selon la destination."
+          "Nous expédions dans le monde entier."
         ],
         returns: [
-          "Les retours sont acceptés sous 14 jours après réception, pour les articles non portés avec étiquettes.",
-          "Pour initier un retour, contactez svampstudios.com@svampstudios.com avec votre numéro de commande.",
-          "Les remboursements sont effectués sous 7 jours ouvrés après réception du retour.",
-          "Les articles soldés et accessoires ne sont ni repris ni échangés."
+          "Les retours sont acceptés sous 14 jours."
         ],
         sizeGuide: [
-          "■ T-SHIRT & T-SHIRT SANS MANCHES",
-          "Nos produits sont fabriqués en deux options de double taille S/M et L/XL conformément aux normes TR / UE.",
-          "• Taille S/M -> Largeur: 59-60 cm | Longueur: 62-63 cm",
-          "• Taille L/XL -> Largeur: 63-64 cm | Longueur: 66-67 cm",
-          "Notes importantes: Il y a une différence moyenne de 4-5 cm entre les tailles TR / UE. En raison des mesures manuelles, une variation de ±1-2 cm peut être observée.",
-          " ",
-          "■ SWEATSHIRT",
-          "Notre produit est fabriqué avec l'option STANDARD (Taille Unique) conformément aux normes TR / UE.",
-          "• Taille STANDARD -> Largeur: 60-61 cm | Longueur: 63-64 cm",
-          "Notes importantes: Notre conception de taille standard est moulée pour s'adapter à différents types de corps. En raison des mesures manuelles, une variation de ±1-2 cm peut être observée.",
-          " ",
-          "■ SWEATPANT (PANTALON DE JOGGING)",
-          "Nos produits sont fabriqués en deux options de double taille S/M et L/XL conformément aux normes TR / UE.",
-          "• Taille S/M -> Taille: 36-37 cm | Longueur: 100 cm",
-          "• Taille L/XL -> Taille: 40-41 cm | Longueur: 100-102 cm",
-          "Notes importantes: Le produit est doté de chevilles élastiques et d'un cordon de serrage réglable. Il y a une différence moyenne de 2-3 cm entre les tailles TR / UE. En raison des mesures manuelles, une variation de ±1-2 cm peut être observée."
+          "■ T-SHIRT & T-SHIRT SANS MANCHES"
         ],
         faq: [
-          "Où sont fabriquées vos pièces ? — Dessinées dans notre studio et produites en petites séries avec des partenaires de confiance.",
-          "Quels moyens de paiement acceptez-vous ? — Tous les cartes principales et portefeuilles numériques.",
-          "Puis-je modifier ou annuler ma commande ? — Contactez-nous dans les 12 heures suivant la commande.",
-          "Réapprovisionnez-vous les articles épuisés ? — Certaines pièces oui, suivez-nous sur Instagram."
+          "Où sont fabriquées vos pièces ? — Dessinées dans notre studio."
         ]
       },
       sizeGuide: {
@@ -544,41 +493,41 @@ const resources = {
         women: "Femme",
         men: "Homme",
         unisex: "Unisexe",
-        tshirt: { title: "T-Shirt", notes: "Nos produits sont fabriqués conformément aux normes TR / UE. Il y a une différence moyenne de 4-5 cm entre les tailles TR / UE. Une variation de ±1-2 cm peut être observée en raison de mesures manuelles.", headers: ["Taille", "Largeur", "Longueur"] },
-        sleeveless: { title: "T-shirt sans manches", notes: "Notre produit sans manches est fabriqué conformément aux normes TR / UE. Il y a une différence moyenne de 4-5 cm entre les tailles. Une variation de ±1-2 cm peut être observée.", headers: ["Taille", "Largeur", "Longueur"] },
-        sweatshirt: { title: "Sweatshirt", notes: "Notre produit est fabriqué avec l'option STANDARD (Taille unique). Il est conçu pour s'adapter à différents types de corps. Une variation de ±1-2 cm peut être observée.", headers: ["Taille", "Largeur", "Longueur"] },
-        sweatpant: { title: "Sweatpant", notes: "Le produit est doté de chevilles élastiques et d'un cordon de serrage réglable. Il y a une différence moyenne de 2-3 cm entre les tailles TR / UE. Une variation de ±1-2 cm peut être observée.", headers: ["Taille", "Tour de taille", "Longueur"] }
+        tshirt: { title: "T-Shirt", notes: "Nos produits sont fabriqués conformément aux normes.", headers: ["Taille", "Largeur", "Longueur"] },
+        sleeveless: { title: "T-shirt sans manches", notes: "Notre produit est fabriqué conformément aux normes.", headers: ["Taille", "Largeur", "Longueur"] },
+        sweatshirt: { title: "Sweatshirt", notes: "Notre produit est fabriqué avec l'option STANDARD.", headers: ["Taille", "Largeur", "Longueur"] },
+        sweatpant: { title: "Sweatpant", notes: "Le produit est doté de chevilles élastiques.", headers: ["Taille", "Tour de taille", "Longueur"] }
       },
       delivery: {
         title: "Informations de livraison",
-        subtitle: "À propos du traitement des commandes et des délais d'expédition",
-        domestic: { heading: "1. Livraison nationale (Türkiye)", p1: "Le délai de livraison estimé pour toutes les commandes passées en Türkiye est de 5 à 7 jours ouvrés.", p2: "Une fois votre commande expédiée, un numéro de suivi vous sera envoyé par SMS et e-mail." },
-        international: { heading: "2. Livraison internationale", p1: "Les délais de livraison estimés pour les commandes internationales peuvent varier selon le pays de destination, les procédures douanières et les transporteurs locaux.", p2: "SVAMP ne peut être tenu responsable des retards causés par des inspections douanières, des perturbations d'expédition ou des cas de force majeure." },
-        customs: { heading: "3. Douanes & Taxes d'importation", p1: "Pour les expéditions internationales, les droits de douane, taxes d'importation ou frais de dédouanement supplémentaires dans le pays de destination sont à la charge exclusive du client." }
+        subtitle: "Délais d'expédition",
+        domestic: { heading: "1. Livraison nationale (Türkiye)", p1: "5 à 7 jours ouvrés.", p2: "Suivi par SMS." },
+        international: { heading: "2. Livraison internationale", p1: "Délais variables.", p2: "SVAMP non responsable des douanes." },
+        customs: { heading: "3. Douanes & Taxes", p1: "Taxes à la charge du client." }
       },
       returns: {
         title: "Retours & Remboursements",
-        subtitle: "Informations sur notre politique de retour",
-        window: { heading: "1. Délai de retour", tr: "Commandes Türkiye :", trText: "Les retours peuvent être demandés dans les 14 jours suivant la livraison.", intl: "Commandes internationales :", intlText: "Les retours peuvent être demandés dans les 30 jours suivant la livraison." },
-        conditions: { heading: "2. Conditions de retour", p1: "Les articles retournés doivent être non utilisés, non portés, non lavés et dans leur état d'origine avec toutes les étiquettes et l'emballage d'origine. SVAMP se réserve le droit de refuser les retours ne répondant pas à ces critères." },
-        shipping: { heading: "3. Frais d'expédition & de douane", p1: "Les frais de retour sont à la charge du client, sauf si l'article reçu est défectueux ou incorrect. Pour les retours internationaux, les frais d'expédition, droits de douane et taxes d'importation ne sont pas remboursables." },
-        contact: { heading: "4. Nous contacter", p1: "Pour initier un retour, veuillez nous contacter à", email: "svamp.info@gmail.com", p2: "avec votre numéro de commande." }
+        subtitle: "Politique de retour",
+        window: { heading: "1. Délai de retour", tr: "Türkiye :", trText: "14 jours.", intl: "International :", intlText: "30 jours." },
+        conditions: { heading: "2. Conditions", p1: "Non utilisé, non porté." },
+        shipping: { heading: "3. Frais", p1: "Frais à la charge du client." },
+        contact: { heading: "4. Contact", p1: "Contactez-nous à", email: "svamp.info@gmail.com", p2: "avec le numéro de commande." }
       },
       terms: {
-        tabs: { terms: "CGV", privacy: "Politique de confidentialité", cookies: "Politique de cookies" },
+        tabs: { terms: "CGV", privacy: "Confidentialité", cookies: "Cookies" },
         lastUpdated: "Dernière mise à jour : 20 mai 2026"
       },
       cookie: {
-        banner: "Nous utilisons des cookies pour améliorer votre expérience sur notre site. Pour plus d'informations, consultez notre",
+        banner: "Nous utilisons des cookies.",
         policyLink: "politique de cookies",
         settings: "Paramètres",
-        rejectAll: "Tout refuser",
-        acceptAll: "Tout accepter",
-        settingsTitle: "Paramètres des cookies",
-        savePreferences: "Enregistrer les préférences",
-        necessary: { label: "Nécessaires", desc: "Requis pour le bon fonctionnement du site. Ne peut pas être désactivé." },
-        analytics: { label: "Analytiques", desc: "Utilisés pour mesurer les performances du site via Google Analytics." },
-        marketing: { label: "Marketing", desc: "Utilisés pour les publicités ciblées via Meta Pixel et TikTok Pixel." }
+        rejectAll: "Refuser",
+        acceptAll: "Accepter",
+        settingsTitle: "Paramètres",
+        savePreferences: "Enregistrer",
+        necessary: { label: "Nécessaires", desc: "Requis." },
+        analytics: { label: "Analytiques", desc: "Performances." },
+        marketing: { label: "Marketing", desc: "Publicités." }
       },
       lang: { label: "Langue" }
     },
