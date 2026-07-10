@@ -5,7 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   en: {
     translation: {
-      marquee: { p1: "EMBRACE THE NIGHT", p2: "REDEFINE YOUR SHADOW", p3: "BORN FROM DARKNESS", p4: "UNCOMPROMISING AESTHETICS" },
+      marquee: { announcement: "Free delivery on $70 dollars worth of purchases" },
       nav: { women: "Women", men: "Men", denim: "Denim", newIn: "New In", search: "Search", cart: "Cart", menu: "Menu", unisex: "Unisex" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "New collection coming soon." },
@@ -147,7 +147,7 @@ const resources = {
   },
   tr: {
     translation: {
-      marquee: { p1: "GECELERİ SAHİPLEN", p2: "GÖLGENİ YENİDEN YARAT", p3: "KARANLIKTAN DOĞDU", p4: "TAVİZSİZ ESTETİK" },
+      marquee: { announcement: "70$ VE ÜZERİ SİPARİŞLERDE ÜCRETSİZ KARGO" },
       nav: { women: "Kadın", men: "Erkek", denim: "Denim", newIn: "Yeni Gelenler", search: "Ara", cart: "Sepet", menu: "Menü", unisex: "Unisex" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Yeni koleksiyon yakında burada." },
@@ -284,7 +284,7 @@ const resources = {
   },
   de: {
     translation: {
-      marquee: { p1: "UMARME DIE NACHT", p2: "DEFINIERE DEINEN SCHATTEN NEU", p3: "AUS DER DUNKELHEIT GEBOREN", p4: "KOMPROMISSLOSE ÄSTHETIK" },
+      marquee: { announcement: "KOSTENLOSER VERSAND AB 70$ BESTELLWERT" },
       nav: { women: "Damen", men: "Herren", denim: "Denim", newIn: "Neuheiten", search: "Suche", cart: "Warenkorb", menu: "Menü", unisex: "Unisex" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Neue Kollektion bald verfügbar." },
@@ -411,7 +411,7 @@ const resources = {
   },
   fr: {
     translation: {
-      marquee: { p1: "EMBRASSEZ LA NUIT", p2: "REDÉFINISSEZ VOTRE OMBRE", p3: "NÉ DE L'OBSCURITÉ", p4: "ESTHÉTIQUE SANS COMPROMIS" },
+      marquee: { announcement: "LIVRAISON GRATUITE DÈS 70$ D'ACHAT" }
       nav: { women: "Femme", men: "Homme", denim: "Denim", newIn: "Nouveautés", search: "Rechercher", cart: "Panier", menu: "Menu", unisex: "Unisexe" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Nouvelle collection bientôt disponible." },
