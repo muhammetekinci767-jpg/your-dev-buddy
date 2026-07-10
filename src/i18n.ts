@@ -411,7 +411,7 @@ const resources = {
   },
   fr: {
     translation: {
-      marquee: { announcement: "LIVRAISON GRATUITE DÈS 70$ D'ACHAT" }
+      marquee: { announcement: "LIVRAISON GRATUITE DÈS 70$ D'ACHAT" },
       nav: { women: "Femme", men: "Homme", denim: "Denim", newIn: "Nouveautés", search: "Rechercher", cart: "Panier", menu: "Menu", unisex: "Unisexe" },
       hero: { women: "Womenwear", men: "Menwear" },
       page: { comingSoon: "Nouvelle collection bientôt disponible." },
