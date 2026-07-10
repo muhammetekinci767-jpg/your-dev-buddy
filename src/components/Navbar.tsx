@@ -39,7 +39,8 @@ const Navbar = () => {
       <Marquee />
 
       {/* Sadece Navbar (Menü) sticky, aşağı kaydırınca ekranda yapışık kalır */}
-      <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0a] backdrop-blur-md transition-all duration-300">
+      {/* Sadece Navbar şeffaf olacak, arkaplan rengi yok */}
+      <nav className="absolute top-9 left-0 z-50 w-full bg-transparent">
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <Link to="/" className="flex items-center" aria-label="Home">
