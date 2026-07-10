@@ -11,7 +11,7 @@ function Womenswear() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black font-sans">
+    <div className="min-h-[120vh] flex flex-col bg-white text-black font-sans">
       <Navbar />
 
       <main className="flex-1 w-full flex flex-col gap-[2px]">
@@ -66,7 +66,7 @@ function Womenswear() {
         </div>
 
         {/* 3. DEV ORTA BANNER */}
-        <div className="relative w-full h-[85vh] md:h-[95vh] bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-[120vh] md:h-[95vh] bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000&auto=format&fit=crop"
             alt="Banner 2"
@@ -80,7 +80,7 @@ function Womenswear() {
         </div>
 
         {/* 4. DEV EN ALT BANNER */}
-        <div className="relative w-full h-[85vh] md:h-[95vh] bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-[120vh] md:h-[95vh] bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2000&auto=format&fit=crop"
             alt="Banner 3"
