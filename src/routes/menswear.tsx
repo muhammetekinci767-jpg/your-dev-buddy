@@ -11,7 +11,7 @@ function Menswear() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black font-sans">
+    <div className="min-h-[120vh] flex flex-col bg-white text-black font-sans">
       <Navbar />
 
       <main className="flex-1 w-full flex flex-col gap-[2px]">
