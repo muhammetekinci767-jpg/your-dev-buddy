@@ -16,14 +16,14 @@ function Womenswear() {
 
       <main className="flex-1 w-full flex flex-col gap-[2px]">
         
-        {/* 1. EN ÜSTTEKİ BÜYÜK BANNER (HERO) */}
-        <div className="relative w-full h-[75vh] md:h-[85vh] bg-gray-100 overflow-hidden">
+        {/* 1. EN ÜSTTEKİ TAM EKRAN BÜYÜK BANNER (HERO) - Alttaki içerikleri tamamen kapatır */}
+        <div className="relative w-full h-screen bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop"
             alt="Womenswear Hero"
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-6 left-6 text-white">
+          <div className="absolute bottom-12 left-8 text-white">
             <h1 className="text-sm md:text-base tracking-[0.2em] uppercase font-bold drop-shadow-md">
               WOMENSWEAR COLLECTION
             </h1>
@@ -65,29 +65,29 @@ function Womenswear() {
           </div>
         </div>
 
-        {/* 3. ORTA BANNER */}
-        <div className="relative w-full h-[65vh] md:h-[75vh] bg-gray-100 overflow-hidden">
+        {/* 3. DEV ORTA BANNER */}
+        <div className="relative w-full h-[85vh] md:h-[95vh] bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000&auto=format&fit=crop"
             alt="Banner 2"
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-6 right-6 text-white">
-            <Link to="/womenswear" className="text-sm tracking-widest uppercase font-medium hover:opacity-70 transition-opacity drop-shadow-md">
+          <div className="absolute bottom-8 right-8 text-white">
+            <Link to="/womenswear" className="text-sm tracking-widest uppercase font-medium hover:opacity-70 transition-opacity drop-shadow-md underline underline-offset-4">
               Shop Collection
             </Link>
           </div>
         </div>
 
-        {/* 4. EN ALT BANNER */}
-        <div className="relative w-full h-[65vh] md:h-[75vh] bg-gray-100 overflow-hidden">
+        {/* 4. DEV EN ALT BANNER */}
+        <div className="relative w-full h-[85vh] md:h-[95vh] bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2000&auto=format&fit=crop"
             alt="Banner 3"
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-6 right-6 text-white">
-            <Link to="/accessories" className="text-sm tracking-widest uppercase font-medium hover:opacity-70 transition-opacity drop-shadow-md">
+          <div className="absolute bottom-8 right-8 text-white">
+            <Link to="/accessories" className="text-sm tracking-widest uppercase font-medium hover:opacity-70 transition-opacity drop-shadow-md underline underline-offset-4">
               Discover More
             </Link>
           </div>
