@@ -70,7 +70,7 @@ function Menswear() {
         </div>
 
         {/* 3. DEV ORTA BANNER */}
-        <div className="relative w-full h-[85vh] md:h-[95vh] bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-[120vh] md:h-[95vh] bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1617114919297-3c8ddb01f599?q=80&w=2000&auto=format&fit=crop"
             alt="Banner 2"
@@ -89,7 +89,7 @@ function Menswear() {
         </div>
 
         {/* 4. DEV EN ALT BANNER */}
-        <div className="relative w-full h-[85vh] md:h-[95vh] bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-[120vh] md:h-[95vh] bg-gray-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000&auto=format&fit=crop"
             alt="Banner 3"
